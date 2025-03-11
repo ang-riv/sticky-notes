@@ -5,7 +5,7 @@ const Note = () => {
   return (
     <div className="h-fit w-fit">
       {/* main sticky note */}
-      <div className="relative h-[300px] w-[300px] rounded-xl border border-gray-400 bg-amber-400 shadow-sm">
+      <div className="pink-bg relative h-[300px] w-[300px] rounded-xl border border-gray-400 shadow-sm">
         <NoteInfo />
         {/* title section */}
         <div className="relative flex h-1/5 w-full items-end justify-between rounded-t-xl border-b-1 border-gray-400 px-2.5 pt-2.5">

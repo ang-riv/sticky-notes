@@ -1,9 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Itim&display=swap");
 @import "tailwindcss";
 @plugin "daisyui" {
   themes:
     light --default,
     dark --prefersdark,
     bumblebee;
+}
+
+@theme {
+  --font--itim: "Itim", sans-serif;
+  --color--myPink: #ff99c8;
+  --color--myYellow: #fcf6bd;
+  --color--myGreen: #d0f4de;
+  --color--myBlue: #a9def9;
+}
+
+* {
+  font-family: var(--font--itim);
+}
+
+/**STICKY NOTE COLORS * */
+.pink-bg {
+  background-color: var(--color--myPink);
+}
+
+.yellow-bg {
+  background-color: var(--color--myYellow);
+}
+
+.green-bg {
+  background-color: var(--color--myGreen);
+}
+
+.blue-bg {
+  background-color: var(--color--myBlue);
 }
 
 /** TYPOGRAPHY STYLES**/
