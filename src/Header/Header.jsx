@@ -27,24 +27,11 @@ const Header = () => {
           <input className="text-lg" type="search" placeholder="Search" />
         </label>
       </div>
-      {/* NEW NOTE*/}
-      <div className="dropdown dropdown-bottom dropdown-center mb-2 flex justify-center">
-        <div tabIndex={0} role="button" className="btn text-base font-medium">
-          + New Note
-        </div>
-        {/* NOTE COLORS */}
-        <div
-          tabIndex={0}
-          className="dropdown-content bg-base-100 rounded-box z-1 flex w-50 content-center justify-center p-2 shadow-md"
-        >
-          <div className="flex content-center justify-between">{colorList}</div>
-        </div>
-      </div>
-      {/*OPTION 2 WITH MENU*/}
-      <ul className="menu menu-md bg-base-200 rounded-box w-full">
+      {/* FILTER/SORT */}
+      <ul className="menu menu-lg bg-base-200 rounded-box mb-2 w-full border border-gray-300 p-0">
         <li>
           <details>
-            <summary className="text-base font-semibold">Filter by...</summary>
+            <summary className="text-lg">Filter by...</summary>
             <ul>
               <li>
                 <details>
@@ -57,6 +44,15 @@ const Header = () => {
                           className="checkbox checkbox-sm"
                         />
                         Newest to Oldest
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input
+                          type="checkbox"
+                          className="checkbox checkbox-sm"
+                        />
+                        Oldest to Newest
                       </label>
                     </li>
                   </ul>
@@ -82,6 +78,23 @@ const Header = () => {
           </details>
         </li>
       </ul>
+      {/* NEW NOTE*/}
+      <div className="dropdown dropdown-bottom dropdown-center flex justify-center">
+        <div
+          tabIndex={0}
+          role="button"
+          className="btn rounded-xl text-base font-medium"
+        >
+          + New Note
+        </div>
+        {/* NOTE COLORS */}
+        <div
+          tabIndex={0}
+          className="dropdown-content bg-base-100 rounded-box z-1 flex w-50 content-center justify-center p-2 shadow-md"
+        >
+          <div className="flex content-center justify-between">{colorList}</div>
+        </div>
+      </div>
     </div>
   );
 };

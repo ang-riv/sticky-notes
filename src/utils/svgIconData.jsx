@@ -6,8 +6,8 @@ export function NoteIcon(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={80}
-      height={80}
+      width={70}
+      height={70}
       viewBox="0 0 36 36"
       {...props}
     >
@@ -101,6 +101,36 @@ export function FilterIcon(props) {
         strokeWidth={1.5}
         d="M4.5 7h15M7 12h10m-7 5h4"
       ></path>
+    </svg>
+  );
+}
+//NEW STICKY NOTE HOVER ICON
+export function CheckIcon(props) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={80}
+      height={80}
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeDasharray={80}
+        strokeDashoffset={80}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M5 11l6 6l10 -10"
+      >
+        <animate
+          fill="freeze"
+          attributeName="stroke-dashoffset"
+          dur="0.4s"
+          values="24;0"
+        ></animate>
+      </path>
     </svg>
   );
 }
