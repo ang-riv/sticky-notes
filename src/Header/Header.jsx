@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { SearchIcon, NoteIcon } from "../utils/svgIconData";
+import { NoteListContext } from "../components/NoteListContext";
 const Header = () => {
+  // updating the new number of notes
+  let { numOfNotes, setNumOfNotes, noteColor, setNoteColor } =
+    useContext(NoteListContext);
+  const handleNewNote = (color) => {
+    setNumOfNotes((numOfNotes += 1));
+    setNoteColor([...noteColor, color]);
+  };
   // sticky note colors
   const noteColors = ["pink-bg", "yellow-bg", "green-bg", "blue-bg"];
   const colorList = [];
@@ -11,14 +19,22 @@ const Header = () => {
     index !== noteColors.length - 1
       ? (classList = buttonClasses)
       : (classList = lastButton);
-    colorList.push(<button className={classList}></button>);
+    colorList.push(
+      <button
+        className={classList}
+        onClick={() => handleNewNote(color)}
+      ></button>,
+    );
   });
+
   return (
     <div className="flex h-fit w-screen flex-col content-center justify-center p-4 outline-1 outline-black">
       {/* TITLE */}
       <div className="mb-2.5 flex h-fit w-fit flex-col items-center justify-center">
         <NoteIcon />
         <h1 className="text-center text-5xl">Super Sticky Notes</h1>
+        <h2>{numOfNotes}</h2>
+        <h3>{noteColor}</h3>
       </div>
       {/* SEARCH */}
       <div className="flex justify-center">
