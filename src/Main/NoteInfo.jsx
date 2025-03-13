@@ -2,7 +2,7 @@ import React from "react";
 
 const NoteInfo = ({ noteDate }) => {
   const tagArr = [];
-  const userTags = ["grocery", "beauty", "school", "other"];
+  const userTags = ["new", "beauty", "school", "other"];
 
   userTags.map((tag) => {
     tagArr.push(

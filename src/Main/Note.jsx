@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "motion/react";
 import NoteInfo from "./NoteInfo";
+import Modal from "../components/Modal";
 
 const Note = ({ noteBackgroundColor }) => {
   // create note with the chosen background color
@@ -30,17 +31,26 @@ const Note = ({ noteBackgroundColor }) => {
   };
 
   // trigger removal
-
+  // if the x btn is pressed, trigger the modal and give it the date.
+  //! KEEP TRACK OF NOTES IN THE NOTES ARR WITH DATE AND TITLE?
   // keep track of the notes info
   const noteDetails = {
     title: titleValue,
     mainText: mainTextValue,
     date: currentDate(),
     removeNote: false,
+    hasMatch: false,
     tags: "",
   };
 
+  const deleteDetails = {
+    title: noteDetails.note,
+    date: noteDetails.date,
+    removeNote: noteDetails.removeNote,
+  };
+
   // if the title and the mainText isn't empty, then push it into the notesArr
+
   return (
     <motion.div className="h-fit w-fit">
       {/* main sticky note */}
@@ -57,8 +67,8 @@ const Note = ({ noteBackgroundColor }) => {
             value={titleValue}
             onChange={handleTitleChange}
           />
-          {/* delete note btn */}
-          <button className="btn h-8 w-8 self-start rounded-xl">X</button>
+          {/* delete note btn/modal */}
+          <Modal deleteDetails={deleteDetails} />
         </div>
         {/* main text section */}
         <div className="relative h-5/7 w-full overflow-y-scroll rounded-b-xl p-2.5">
