@@ -3,11 +3,45 @@ import { SearchIcon, NoteIcon } from "../utils/svgIconData";
 import { NoteListContext } from "../components/NoteListContext";
 const Header = () => {
   // updating the new number of notes and what color to make them
-  let { numOfNotes, setNumOfNotes, noteColor, setNoteColor } =
-    useContext(NoteListContext);
+  let {
+    numOfNotes,
+    setNumOfNotes,
+    noteColor,
+    setNoteColor,
+    notesList,
+    setNotesList,
+  } = useContext(NoteListContext);
+
+  const currentDate = () => {
+    const date = new Date().toLocaleDateString("en-US", {
+      second: "2-digit",
+      minute: "2-digit",
+      hour: "2-digit",
+      month: "2-digit",
+      day: "2-digit",
+      year: "2-digit",
+    });
+
+    // only retrieve date when the note isn't entirely empty
+    return date;
+  };
+
+  //* making a new note
   const handleNewNote = (color) => {
     setNumOfNotes((numOfNotes += 1));
     setNoteColor([...noteColor, color]);
+
+    const noteDetails = {
+      title: "",
+      mainText: "",
+      date: currentDate(),
+      removeNote: false,
+      hasMatch: false,
+      tags: "",
+      bgColor: color,
+    };
+
+    setNotesList([...notesList, noteDetails]);
   };
   // sticky note colors
   const noteColors = ["pink-bg", "yellow-bg", "green-bg", "blue-bg"];
@@ -26,7 +60,7 @@ const Header = () => {
       ></button>,
     );
   });
-
+  console.log(notesList);
   return (
     <div className="flex h-fit w-screen flex-col content-center justify-center p-4 outline-1 outline-black">
       {/* TITLE */}

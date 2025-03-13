@@ -4,10 +4,10 @@ import NoteInfo from "./NoteInfo";
 import Modal from "../components/Modal";
 import { NoteListContext } from "../components/NoteListContext";
 
-const Note = ({ noteBackgroundColor }) => {
+const Note = ({ details }) => {
   let { notesList, setNotesList } = useContext(NoteListContext);
   // create note with the chosen background color
-  const noteMainStyles = `${noteBackgroundColor} relative h-[290px] w-[290px] rounded-xl border border-gray-400 shadow-sm`;
+  const noteMainStyles = `${details.bgColor} relative h-[290px] w-[290px] rounded-xl border border-gray-400 shadow-sm`;
 
   const [titleValue, setTitleValue] = useState("");
   const [mainTextValue, setMainTextValue] = useState("");
@@ -15,9 +15,11 @@ const Note = ({ noteBackgroundColor }) => {
   // keep track of the title and main text
   const handleTitleChange = (e) => {
     setTitleValue(e.target.value);
+    details.title = titleValue;
   };
   const handleMainTextChange = (e) => {
     setMainTextValue(e.target.value);
+    details.mainText = mainTextValue;
   };
 
   // keep track of the date
@@ -46,7 +48,7 @@ const Note = ({ noteBackgroundColor }) => {
   };
 
   const deleteDetails = {
-    title: noteDetails.note,
+    title: noteDetails.title,
     date: noteDetails.date,
     removeNote: noteDetails.removeNote,
   };
