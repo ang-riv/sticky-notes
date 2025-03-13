@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { motion } from "motion/react";
 import NoteInfo from "./NoteInfo";
 import Modal from "../components/Modal";
+import { NoteListContext } from "../components/NoteListContext";
 
 const Note = ({ noteBackgroundColor }) => {
+  let { notesList, setNotesList } = useContext(NoteListContext);
   // create note with the chosen background color
   const noteMainStyles = `${noteBackgroundColor} relative h-[290px] w-[290px] rounded-xl border border-gray-400 shadow-sm`;
 
@@ -50,7 +52,7 @@ const Note = ({ noteBackgroundColor }) => {
   };
 
   // if the title and the mainText isn't empty, then push it into the notesArr
-
+  //! needs an update thing because just pushing this wouldn't work
   return (
     <motion.div className="h-fit w-fit">
       {/* main sticky note */}

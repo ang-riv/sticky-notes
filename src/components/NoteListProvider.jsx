@@ -19,10 +19,18 @@ function NoteListProvider({ children }) {
     };
     const note = Object.create(noteInfo);
   */
+  const [notesList, setNotesList] = useState([]);
 
   return (
     <NoteListContext.Provider
-      value={{ numOfNotes, setNumOfNotes, noteColor, setNoteColor }}
+      value={{
+        numOfNotes,
+        setNumOfNotes,
+        noteColor,
+        setNoteColor,
+        notesList,
+        setNotesList,
+      }}
     >
       {children}
     </NoteListContext.Provider>
