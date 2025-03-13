@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { SearchIcon, NoteIcon } from "../utils/svgIconData";
 import { NoteListContext } from "../components/NoteListContext";
 const Header = () => {
-  // updating the new number of notes
+  // updating the new number of notes and what color to make them
   let { numOfNotes, setNumOfNotes, noteColor, setNoteColor } =
     useContext(NoteListContext);
   const handleNewNote = (color) => {

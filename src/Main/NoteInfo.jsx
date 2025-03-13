@@ -1,6 +1,6 @@
 import React from "react";
 
-const NoteInfo = () => {
+const NoteInfo = ({ noteDate }) => {
   const tagArr = [];
   const userTags = ["grocery", "beauty", "school", "other"];
 
@@ -14,11 +14,10 @@ const NoteInfo = () => {
       </li>,
     );
   });
-  const date = "03/11/25";
   return (
     <div>
       <div className="absolute bottom-0 z-10 h-3/12 w-full rounded-b-xl bg-gray-50 p-2.5">
-        <p>Created: {date}</p>
+        <p>Created: {noteDate}</p>
         <div className="flex w-full flex-row">
           <div className="">
             <p>Tags: </p>
