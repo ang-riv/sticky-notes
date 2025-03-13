@@ -12,6 +12,7 @@ const Header = () => {
     setNotesList,
   } = useContext(NoteListContext);
 
+  // used as the unique key to find it later for deleting
   const currentDate = () => {
     const date = new Date().toLocaleDateString("en-US", {
       second: "2-digit",

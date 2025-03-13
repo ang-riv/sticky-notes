@@ -47,10 +47,10 @@ const Note = ({ details }) => {
     tags: "",
   };
 
-  const deleteDetails = {
-    title: noteDetails.title,
-    date: noteDetails.date,
-    removeNote: noteDetails.removeNote,
+  //* see if the arr can handle the change of removeNote
+  const handleRemove = () => {
+    details.removeNote = true;
+    console.log(notesList);
   };
 
   // if the title and the mainText isn't empty, then push it into the notesArr
@@ -72,7 +72,10 @@ const Note = ({ details }) => {
             onChange={handleTitleChange}
           />
           {/* delete note btn/modal */}
-          <Modal deleteDetails={deleteDetails} />
+          <Modal deleteDetails={details} />
+          <button className="btn" onClick={handleRemove}>
+            Remove Note
+          </button>
         </div>
         {/* main text section */}
         <div className="relative h-5/7 w-full overflow-y-scroll rounded-b-xl p-2.5">
@@ -85,7 +88,7 @@ const Note = ({ details }) => {
           ></textarea>
         </div>
         {/* details of the note */}
-        <NoteInfo noteDate={noteDetails.date} />
+        <NoteInfo noteDate={details.date} />
       </div>
     </motion.div>
   );
