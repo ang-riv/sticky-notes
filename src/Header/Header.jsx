@@ -33,8 +33,6 @@ const Header = () => {
       <div className="mb-2.5 flex h-fit w-fit flex-col items-center justify-center">
         <NoteIcon />
         <h1 className="text-center text-5xl">Super Sticky Notes</h1>
-        <h2>{numOfNotes}</h2>
-        <h3>{noteColor}</h3>
       </div>
       {/* SEARCH */}
       <div className="flex justify-center">

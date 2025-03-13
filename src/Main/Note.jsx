@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "motion/react";
 import NoteInfo from "./NoteInfo";
 
 const Note = ({ noteBackgroundColor }) => {
@@ -41,7 +42,7 @@ const Note = ({ noteBackgroundColor }) => {
 
   // if the title and the mainText isn't empty, then push it into the notesArr
   return (
-    <div className="h-fit w-fit">
+    <motion.div className="h-fit w-fit">
       {/* main sticky note */}
       <div className={noteMainStyles}>
         <NoteInfo />
@@ -72,7 +73,7 @@ const Note = ({ noteBackgroundColor }) => {
         {/* details of the note */}
         <NoteInfo noteDate={noteDetails.date} />
       </div>
-    </div>
+    </motion.div>
   );
 };
 
