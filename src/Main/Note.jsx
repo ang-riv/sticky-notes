@@ -1,13 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { motion } from "motion/react";
 import NoteInfo from "./NoteInfo";
-import Modal from "../components/Modal";
 import { NoteListContext } from "../components/NoteListContext";
 import { useDebounce } from "@uidotdev/usehooks";
 
-const Note = ({ details, id }) => {
+const Note = ({ bgColor, id, date }) => {
   // create note with the chosen background color
-  const noteMainStyles = `${details.bgColor} relative h-[290px] w-[290px] rounded-xl border border-gray-400 shadow-sm`;
+  const noteMainStyles = `${bgColor} relative h-[290px] w-[290px] rounded-xl border border-gray-400 shadow-sm`;
   let { notesList, setNotesList } = useContext(NoteListContext);
   const [titleValue, setTitleValue] = useState("");
   const [mainTextValue, setMainTextValue] = useState("");
@@ -15,13 +14,21 @@ const Note = ({ details, id }) => {
   const debounceTitle = useDebounce(titleValue, 300);
   const debounceMainText = useDebounce(mainTextValue, 300);
 
+  const [alert, setAlert] = useState(false);
+  useEffect(() => {
+    alert ? console.log("alerting!") : console.log("not working");
+  }, [alert]);
+
+  const alertMe = () => {
+    setAlert(true);
+  };
   // for changing the title and the description using the note id
   const handleTitleChange = (id, e) => {
     const userInput = e.target.value;
     setTitleValue(userInput);
     setNotesList((prevNotes) =>
       prevNotes.map((note) =>
-        note.id === id ? { ...note, title: titleValue } : note,
+        note.id === id ? { ...note, title: debounceTitle } : note,
       ),
     );
   };
@@ -31,22 +38,42 @@ const Note = ({ details, id }) => {
     setMainTextValue(userInput);
     setNotesList((prevNotes) =>
       prevNotes.map((note) =>
-        note.id === id ? { ...note, mainText: mainTextValue } : note,
+        note.id === id ? { ...note, mainText: debounceMainText } : note,
       ),
     );
   };
 
   // remove note by filtering out of arr with id
   const handleRemove = (id) => {
+    setAlert(false);
     const updatedNotes = notesList.filter((note) => {
       return note.id !== id;
     });
 
     setNotesList(updatedNotes);
   };
-  // if the title and the mainText isn't empty, then push it into the notesArr
+
+  const closeAlert = () => {
+    setAlert(false);
+  };
   return (
-    <motion.div className="h-fit w-fit">
+    <motion.div className="mb-5 h-fit w-fit" id={id}>
+      {alert ? (
+        <div role="alert" className="alert alert-info alert-outline">
+          <span>
+            Hold it! Are you sure you want to delete your sticky note? You'll
+            lose all your info!
+          </span>
+          <button className="btn" onClick={closeAlert}>
+            Cancel
+          </button>
+          <button className="btn" onClick={() => handleRemove(id)}>
+            Delete
+          </button>
+        </div>
+      ) : (
+        <></>
+      )}
       {/* main sticky note */}
       <div className={noteMainStyles}>
         <NoteInfo />
@@ -63,8 +90,7 @@ const Note = ({ details, id }) => {
             onChange={(e) => handleTitleChange(id, e)}
             autoFocus
           />
-          {/* delete note btn/modal */}
-          <button className="btn" onClick={() => handleRemove(id)}>
+          <button className="btn" onClick={alertMe}>
             X
           </button>
         </div>
@@ -80,7 +106,7 @@ const Note = ({ details, id }) => {
           ></textarea>
         </div>
         {/* details of the note */}
-        <NoteInfo noteDate={details.date} />
+        <NoteInfo noteDate={date} />
       </div>
     </motion.div>
   );

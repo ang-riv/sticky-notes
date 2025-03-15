@@ -10,11 +10,12 @@ const NoteSection = () => {
   const displayNotes = notesList.map((details) => {
     return (
       <Note
-        details={details}
         title={details.title}
         mainText={details.mainText}
         key={details.id}
         id={details.id}
+        date={details.date}
+        bgColor={details.bgColor}
       />
     );
   });

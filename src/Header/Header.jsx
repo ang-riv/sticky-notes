@@ -61,7 +61,6 @@ const Header = () => {
       ></button>,
     );
   });
-  console.log(notesList);
   return (
     <div className="flex h-fit w-screen flex-col content-center justify-center p-4 outline-1 outline-black">
       {/* TITLE */}
