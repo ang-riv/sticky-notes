@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import NoteInfo from "./NoteInfo";
 import { NoteListContext } from "../components/NoteListContext";
 import { useDebounce } from "@uidotdev/usehooks";
+import { WarningIcon } from "../utils/svgIconData";
 
 const Note = ({ bgColor, id, date }) => {
   // create note with the chosen background color
@@ -53,29 +54,43 @@ const Note = ({ bgColor, id, date }) => {
     setNotesList(updatedNotes);
   };
 
-  const closeAlert = () => {
-    setAlert(false);
-  };
   return (
     <motion.div className="mb-5 h-fit w-fit" id={id}>
-      {alert ? (
-        <div role="alert" className="alert alert-info alert-outline">
-          <span>
-            Hold it! Are you sure you want to delete your sticky note? You'll
-            lose all your info!
-          </span>
-          <button className="btn" onClick={closeAlert}>
-            Cancel
-          </button>
-          <button className="btn" onClick={() => handleRemove(id)}>
-            Delete
-          </button>
-        </div>
-      ) : (
-        <></>
-      )}
       {/* main sticky note */}
       <div className={noteMainStyles}>
+        {alert ? (
+          <div
+            role="alert"
+            className="alert alert-warning absolute z-20 flex h-full w-full flex-col items-center justify-center border-4 border-amber-800"
+          >
+            <div className="flex items-center justify-baseline">
+              <WarningIcon />
+              <span className="px-3 text-4xl font-bold">Hold it!</span>
+              <WarningIcon />
+            </div>
+
+            <p className="w-full text-center text-[1.125em]">
+              Are you sure you want to delete your sticky note? You'll lose all
+              your info!
+            </p>
+            <div>
+              <button
+                className="btn btn-lg mt-2.5 mr-5 rounded-xl p-4"
+                onClick={() => setAlert(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className="btn btn-lg mt-2.5 rounded-xl p-4"
+                onClick={() => handleRemove(id)}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        ) : (
+          <></>
+        )}
         <NoteInfo />
         {/* title section */}
         <div className="relative flex h-1/5 w-full items-end justify-between rounded-t-xl border-b-1 border-gray-400 px-2.5 pt-2.5">
