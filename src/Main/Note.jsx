@@ -1,8 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { motion } from "motion/react";
 import NoteInfo from "./NoteInfo";
 import Modal from "../components/Modal";
 import { NoteListContext } from "../components/NoteListContext";
+import { useDebounce } from "@uidotdev/usehooks";
 
 const Note = ({ details }) => {
   let { notesList, setNotesList } = useContext(NoteListContext);
@@ -12,40 +13,22 @@ const Note = ({ details }) => {
   const [titleValue, setTitleValue] = useState("");
   const [mainTextValue, setMainTextValue] = useState("");
 
+  const debounceTitle = useDebounce(titleValue, 300);
+  const debounceMainText = useDebounce(mainTextValue, 300);
+
   // keep track of the title and main text
   const handleTitleChange = (e) => {
     setTitleValue(e.target.value);
-    details.title = titleValue;
+    details.title = debounceTitle;
+    console.log(notesList);
   };
   const handleMainTextChange = (e) => {
     setMainTextValue(e.target.value);
-    details.mainText = mainTextValue;
-  };
-
-  // keep track of the date
-  const currentDate = () => {
-    const date = new Date().toLocaleDateString("en-US", {
-      month: "2-digit",
-      day: "2-digit",
-      year: "2-digit",
-    });
-
-    // only retrieve date when the note isn't entirely empty
-    if (titleValue !== "" || mainTextValue !== "") return date;
+    details.mainText = debounceMainText;
   };
 
   // trigger removal
   // if the x btn is pressed, trigger the modal and give it the date.
-  //! KEEP TRACK OF NOTES IN THE NOTES ARR WITH DATE AND TITLE?
-  // keep track of the notes info
-  const noteDetails = {
-    title: titleValue,
-    mainText: mainTextValue,
-    date: currentDate(),
-    removeNote: false,
-    hasMatch: false,
-    tags: "",
-  };
 
   //* see if the arr can handle the change of removeNote
   const handleRemove = () => {
@@ -54,7 +37,6 @@ const Note = ({ details }) => {
   };
 
   // if the title and the mainText isn't empty, then push it into the notesArr
-  //! needs an update thing because just pushing this wouldn't work
   return (
     <motion.div className="h-fit w-fit">
       {/* main sticky note */}

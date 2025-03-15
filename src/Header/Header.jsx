@@ -33,6 +33,7 @@ const Header = () => {
     setNoteColor([...noteColor, color]);
 
     const noteDetails = {
+      id: crypto.randomUUID(),
       title: "",
       mainText: "",
       date: currentDate(),
