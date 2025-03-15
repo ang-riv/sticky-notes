@@ -4,10 +4,19 @@ import Note from "./Note";
 import { NoteListContext } from "../components/NoteListContext";
 const NoteSection = () => {
   // create a note using the array with the bg color chosen
-  let { noteColor, notesList } = useContext(NoteListContext);
+  let { notesList } = useContext(NoteListContext);
+
   //* create a note from the notes list, using that as the props
   const displayNotes = notesList.map((details) => {
-    return <Note details={details} key={details.date} />;
+    return (
+      <Note
+        details={details}
+        title={details.title}
+        mainText={details.mainText}
+        key={details.id}
+        id={details.id}
+      />
+    );
   });
 
   // have it center on mobile and tablet, then change to content start justify start and wrap

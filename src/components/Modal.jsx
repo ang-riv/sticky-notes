@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
+import { NoteListContext } from "./NoteListContext";
 
-const Modal = ({ deleteDetails }) => {
+const Modal = ({ details }) => {
   // if they confirm delete, find the specific note, remove from the arr
+  let { notesList, setNotesList } = useContext(NoteListContext);
+  //* either do it like this directly or copy the arr, find the one that has the same id, set it to true, then delete
+  const handleRemove = (e) => {
+    e.preventDefault();
+    // set to true or just find it from the id
+    //deleteDetails.removeNote = true;
+    /*
+    const updatedList = notesList.filter((note) => {
+      return note.removeNote != true;
+    });
+    
+    setNotesList(updatedList);
+    */
+    console.log(details.id);
+  };
   return (
     <>
       {/* Open the modal using document.getElementById('ID').showModal() method */}
@@ -23,7 +39,10 @@ const Modal = ({ deleteDetails }) => {
             <form method="dialog">
               {/* if there is a button in form, it will close the modal */}
               <button className="btn font-md mr-2 rounded-xl">Cancel</button>
-              <button className="btn font-base rounded-xl bg-red-700 text-white">
+              <button
+                className="btn font-base rounded-xl bg-red-700 text-white"
+                onClick={handleRemove}
+              >
                 Delete
               </button>
             </form>

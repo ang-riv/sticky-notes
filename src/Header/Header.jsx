@@ -37,7 +37,6 @@ const Header = () => {
       title: "",
       mainText: "",
       date: currentDate(),
-      removeNote: false,
       hasMatch: false,
       tags: "",
       bgColor: color,

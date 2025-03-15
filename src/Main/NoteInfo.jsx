@@ -4,9 +4,12 @@ const NoteInfo = ({ noteDate }) => {
   const tagArr = [];
   const userTags = ["new", "beauty", "school", "other"];
 
-  userTags.map((tag) => {
+  userTags.map((tag, index) => {
     tagArr.push(
-      <li className="text-ms ml-1 flex h-fit w-fit items-center justify-evenly rounded-full border border-gray-300 bg-white px-2">
+      <li
+        className="text-ms ml-1 flex h-fit w-fit items-center justify-evenly rounded-full border border-gray-300 bg-white px-2"
+        key={index}
+      >
         <button className="btn mr-1 h-5 w-5 rounded-full border p-0 text-sm">
           x
         </button>
