@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { SearchIcon, NoteIcon } from "../utils/svgIconData";
 import { NoteListContext } from "../components/NoteListContext";
+import Filters from "./Filters";
+import filter from "daisyui/components/filter";
 const Header = () => {
   // updating the new number of notes and what color to make them
   let {
@@ -10,9 +12,10 @@ const Header = () => {
     setNoteColor,
     notesList,
     setNotesList,
+    filtersActive,
   } = useContext(NoteListContext);
 
-  // used as the unique key to find it later for deleting
+  //* date
   const currentDate = () => {
     const date = new Date().toLocaleDateString("en-US", {
       second: "2-digit",
@@ -44,7 +47,8 @@ const Header = () => {
 
     setNotesList([...notesList, noteDetails]);
   };
-  // sticky note colors
+
+  //* sticky note colors
   const noteColors = ["pink-bg", "yellow-bg", "green-bg", "blue-bg"];
   const colorList = [];
   noteColors.map((color, index) => {
@@ -67,6 +71,7 @@ const Header = () => {
       <div className="mb-2.5 flex h-fit w-fit flex-col items-center justify-center">
         <NoteIcon />
         <h1 className="text-center text-5xl">Super Sticky Notes</h1>
+        <h2>{filtersActive}</h2>
       </div>
       {/* SEARCH */}
       <div className="flex justify-center">
@@ -76,56 +81,7 @@ const Header = () => {
         </label>
       </div>
       {/* FILTER/SORT */}
-      <ul className="menu menu-lg bg-base-200 rounded-box mb-2 w-full border border-gray-300 p-0">
-        <li>
-          <details>
-            <summary className="text-lg">Filter by...</summary>
-            <ul>
-              <li>
-                <details>
-                  <summary>Date</summary>
-                  <ul>
-                    <li>
-                      <label>
-                        <input
-                          type="checkbox"
-                          className="checkbox checkbox-sm"
-                        />
-                        Newest to Oldest
-                      </label>
-                    </li>
-                    <li>
-                      <label>
-                        <input
-                          type="checkbox"
-                          className="checkbox checkbox-sm"
-                        />
-                        Oldest to Newest
-                      </label>
-                    </li>
-                  </ul>
-                </details>
-              </li>
-              <li>
-                <details>
-                  <summary>Tag</summary>
-                  <ul>
-                    <li>
-                      <label>
-                        <input
-                          type="checkbox"
-                          className="checkbox checkbox-sm"
-                        />
-                        Newest to Oldest
-                      </label>
-                    </li>
-                  </ul>
-                </details>
-              </li>
-            </ul>
-          </details>
-        </li>
-      </ul>
+      <Filters />
       {/* NEW NOTE*/}
       <div className="dropdown dropdown-bottom dropdown-center flex justify-center">
         <div

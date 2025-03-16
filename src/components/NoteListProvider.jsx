@@ -6,6 +6,14 @@ function NoteListProvider({ children }) {
   const [noteColor, setNoteColor] = useState([]);
   const [notesList, setNotesList] = useState([]);
 
+  //* filters
+  const [filtersActive, setFiltersActive] = useState("");
+  const [filteredNotes, setFilteredNotes] = useState(false);
+
+  //* search
+  const [searchActive, setSearchActive] = useState(false);
+  const [searchNotes, setSearchNotes] = useState(false);
+
   return (
     <NoteListContext.Provider
       value={{
@@ -15,6 +23,14 @@ function NoteListProvider({ children }) {
         setNoteColor,
         notesList,
         setNotesList,
+        filtersActive,
+        setFiltersActive,
+        filteredNotes,
+        setFilteredNotes,
+        searchActive,
+        setSearchActive,
+        searchNotes,
+        setSearchNotes,
       }}
     >
       {children}

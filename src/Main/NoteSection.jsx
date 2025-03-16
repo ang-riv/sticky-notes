@@ -4,7 +4,7 @@ import Note from "./Note";
 import { NoteListContext } from "../components/NoteListContext";
 const NoteSection = () => {
   // create a note using the array with the bg color chosen
-  let { notesList } = useContext(NoteListContext);
+  let { notesList, filteredList, searchList } = useContext(NoteListContext);
 
   //* create a note from the notes list, using that as the props
   const displayNotes = notesList.map((details) => {
