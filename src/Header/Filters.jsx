@@ -1,15 +1,14 @@
 import React, { useContext } from "react";
 import { NoteListContext } from "../components/NoteListContext";
-import { option } from "motion/react-client";
 
 const Filters = () => {
-  let { filtersActive, setFiltersActive } = useContext(NoteListContext);
+  let { setFiltersActive } = useContext(NoteListContext);
+  const dateOptions = ["Newest to Oldest", "Oldest to Newest"];
+  const noteColors = ["pink-bg", "yellow-bg", "green-bg", "blue-bg"];
+
   const selectedFilter = (e, filter) => {
     e.target.checked ? setFiltersActive(filter) : setFiltersActive("");
   };
-
-  const noteColors = ["pink-bg", "yellow-bg", "green-bg", "blue-bg"];
-  const dateOptions = ["Newest to Oldest", "Oldest to Newest"];
 
   const filterOptions = (optionArr) =>
     optionArr.map((option) => (
@@ -25,6 +24,7 @@ const Filters = () => {
         </label>
       </li>
     ));
+
   return (
     <ul className="menu menu-lg bg-base-200 rounded-box mb-2 w-full border border-gray-300 p-0">
       <li>
