@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { SearchIcon, NoteIcon } from "../utils/svgIconData";
 import { NoteListContext } from "../components/NoteListContext";
 import Filters from "./Filters";
-import filter from "daisyui/components/filter";
+import Search from "./Search";
 const Header = () => {
   // updating the new number of notes and what color to make them
   let {
@@ -74,12 +74,7 @@ const Header = () => {
         <h2>{filtersActive}</h2>
       </div>
       {/* SEARCH */}
-      <div className="flex justify-center">
-        <label className="input my-2 w-3xs">
-          <SearchIcon />
-          <input className="text-lg" type="search" placeholder="Search" />
-        </label>
-      </div>
+      <Search />
       {/* FILTER/SORT */}
       <Filters />
       {/* NEW NOTE*/}

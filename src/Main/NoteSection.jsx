@@ -1,39 +1,24 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useMemo } from "react";
 import { animate, AnimatePresence } from "motion/react";
 import Note from "./Note";
 import { NoteListContext } from "../components/NoteListContext";
 const NoteSection = () => {
   // create a note using the array with the bg color chosen
-  let { notesList, filtersActive } = useContext(NoteListContext);
+  let { notesList, filtersActive, searchActive } = useContext(NoteListContext);
 
   let filteredList = [];
-  //* create a note from the notes list, using that as the props
-  const displayNotes = notesList.map((details) => {
-    return (
-      <Note
-        title={details.title}
-        mainText={details.mainText}
-        key={details.id}
-        id={details.id}
-        date={details.date}
-        bgColor={details.bgColor}
-      />
+  let searchList = [];
+  let noteColors = ["pink-bg", "yellow-bg", "green-bg", "blue-bg"];
+  let noteOptions = {
+    colors: ["pink-bg", "yellow-bg", "green-bg", "blue-bg"],
+    date: ["Newest to Oldest", "Oldest to Newest"],
+  };
+  // noteOptions.colors[0] to replace the switch statement
+  const filterMemo = useMemo(() => {
+    return notesList.filter((note) =>
+      note.title.toLowerCase().includes(searchActive),
     );
-  });
-
-  //* displaying the right list depending on if filter or search are active
-  const displayList = (list) =>
-    list.map((details) => (
-      <Note
-        title={details.title}
-        mainText={details.mainText}
-        key={details.id}
-        id={details.id}
-        date={details.date}
-        bgColor={details.bgColor}
-      />
-    ));
-
+  }, [notesList, searchActive]);
   // if date is active, check what type, sort them in the correct order
   const showNotes = () => {
     // find the dates + colors of the notes
@@ -42,7 +27,7 @@ const NoteSection = () => {
     // sort them based on chosen order
     let dateOrder = [];
 
-    //* filters are on
+    //* filters are on (date or color)
     // find the note with those dates and push them in that order into a new arr and return
     for (let i = 0; i < dates.length; i++) {
       const element = dates[i];
@@ -51,13 +36,17 @@ const NoteSection = () => {
       );
       dateOrder.push(noteOrder);
     }
-
+    const colors = noteColors.map(
+      (color) =>
+        (filteredList = notesList.filter((note) => note.bgColor === color)),
+    );
+    //! Replace with object of arrays --> if filtersActive matches anything in the color arr or date arr then dateOrder for date or colors arr ^ with return?
     switch (filtersActive) {
       case "Newest to Oldest":
-        filteredList = dateOrder;
+        filteredList = dateOrder.reverse();
         break;
       case "Oldest to Newest":
-        filteredList = dateOrder.reverse();
+        filteredList = dateOrder;
         break;
       case "pink-bg":
         filteredList = notesList.filter((note) => note.bgColor === "pink-bg");
@@ -75,21 +64,48 @@ const NoteSection = () => {
         filteredList = notesList;
         break;
     }
-    console.log(filteredList);
   };
-  showNotes();
+  //* search
+  // if a filter is active (date or colors) but search isn't active
+  //showNotes();
+  const findNote = () => {
+    for (let i = 0; i < notesList.length; i++) {
+      const note = notesList[i];
+      const title = note.title.toLowerCase();
+      const mainText = note.mainText.toLowerCase();
+
+      if (title.includes(searchActive) || mainText.includes(searchActive)) {
+        searchList.push(note);
+      }
+    }
+  };
+  //if (searchActive != "") findNote();
+  //* displaying the right list depending on if filter or search are active
+  const displayNotes = (list) =>
+    list.map((details) => (
+      <Note
+        title={details.title}
+        mainText={details.mainText}
+        key={details.id}
+        id={details.id}
+        date={details.date}
+        bgColor={details.bgColor}
+      />
+    ));
+  console.log(filterMemo);
   // have it center on mobile and tablet, then change to content start justify start and wrap
   return (
     <div className="mt-2.5 flex h-full w-full flex-col items-center justify-start">
-      {/*  
-      <AnimatePresence mode="sync" animate={{ rotate: 360 }}>
-        {noteColor.map((color) => {
-          return <Note key={color} noteBackgroundColor={color} />;
-        })}
-      </AnimatePresence>
-      <div>{notesList}</div>
-      */}
-      {displayList(filteredList)}
+      {filterMemo.map((details) => (
+        <Note
+          title={details.title}
+          mainText={details.mainText}
+          key={details.id}
+          id={details.id}
+          date={details.date}
+          bgColor={details.bgColor}
+        />
+      ))}
     </div>
   );
 };

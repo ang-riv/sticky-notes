@@ -12,34 +12,33 @@ const Note = ({ bgColor, id, date }) => {
   const [titleValue, setTitleValue] = useState("");
   const [mainTextValue, setMainTextValue] = useState("");
 
-  const debounceTitle = useDebounce(titleValue, 300);
-  const debounceMainText = useDebounce(mainTextValue, 300);
+  const debounceTitle = useDebounce(titleValue, 200);
+  const debounceMainText = useDebounce(mainTextValue, 200);
 
   const [alert, setAlert] = useState(false);
-  useEffect(() => {
-    alert ? console.log("alerting!") : console.log("not working");
-  }, [alert]);
 
   const alertMe = () => {
     setAlert(true);
   };
   // for changing the title and the description using the note id
   const handleTitleChange = (id, e) => {
+    e.preventDefault();
     const userInput = e.target.value;
     setTitleValue(userInput);
     setNotesList((prevNotes) =>
       prevNotes.map((note) =>
-        note.id === id ? { ...note, title: debounceTitle } : note,
+        note.id === id ? { ...note, title: titleValue } : note,
       ),
     );
   };
 
   const handleMainTextChange = (id, e) => {
+    e.preventDefault();
     const userInput = e.target.value;
     setMainTextValue(userInput);
     setNotesList((prevNotes) =>
       prevNotes.map((note) =>
-        note.id === id ? { ...note, mainText: debounceMainText } : note,
+        note.id === id ? { ...note, mainText: mainTextValue } : note,
       ),
     );
   };

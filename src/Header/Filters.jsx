@@ -4,7 +4,7 @@ import { NoteListContext } from "../components/NoteListContext";
 const Filters = () => {
   let { setFiltersActive } = useContext(NoteListContext);
   const dateOptions = ["Newest to Oldest", "Oldest to Newest"];
-  const noteColors = ["pink-bg", "yellow-bg", "green-bg", "blue-bg"];
+  const noteColors = ["All", "pink-bg", "yellow-bg", "green-bg", "blue-bg"];
 
   const selectedFilter = (e, filter) => {
     e.target.checked ? setFiltersActive(filter) : setFiltersActive("");

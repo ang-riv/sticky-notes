@@ -10,7 +10,7 @@ function NoteListProvider({ children }) {
   const [filtersActive, setFiltersActive] = useState("");
 
   //* search
-  const [searchActive, setSearchActive] = useState(false);
+  const [searchActive, setSearchActive] = useState("");
 
   return (
     <NoteListContext.Provider
