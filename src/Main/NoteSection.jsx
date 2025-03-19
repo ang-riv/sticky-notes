@@ -1,5 +1,4 @@
 import React, { useContext, useState, useMemo } from "react";
-import { animate, AnimatePresence } from "motion/react";
 import Note from "./Note";
 import { NoteListContext } from "../components/NoteListContext";
 const NoteSection = () => {
@@ -14,11 +13,6 @@ const NoteSection = () => {
     date: ["Newest to Oldest", "Oldest to Newest"],
   };
   // noteOptions.colors[0] to replace the switch statement
-  const filterMemo = useMemo(() => {
-    return notesList.filter((note) =>
-      note.title.toLowerCase().includes(searchActive),
-    );
-  }, [notesList, searchActive]);
   // if date is active, check what type, sort them in the correct order
   const showNotes = () => {
     // find the dates + colors of the notes
@@ -92,20 +86,19 @@ const NoteSection = () => {
         bgColor={details.bgColor}
       />
     ));
-  console.log(filterMemo);
+  showNotes();
   // have it center on mobile and tablet, then change to content start justify start and wrap
   return (
     <div className="mt-2.5 flex h-full w-full flex-col items-center justify-start">
-      {filterMemo.map((details) => (
-        <Note
-          title={details.title}
-          mainText={details.mainText}
-          key={details.id}
-          id={details.id}
-          date={details.date}
-          bgColor={details.bgColor}
-        />
-      ))}
+      {/*  
+      <AnimatePresence mode="sync" animate={{ rotate: 360 }}>
+        {noteColor.map((color) => {
+          return <Note key={color} noteBackgroundColor={color} />;
+        })}
+      </AnimatePresence>
+      <div>{notesList}</div>
+      */}
+      {displayNotes(filteredList)}
     </div>
   );
 };
