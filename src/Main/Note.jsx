@@ -22,7 +22,6 @@ const Note = ({ bgColor, id, date }) => {
   };
   // for changing the title and the description using the note id
   const handleTitleChange = (id, e) => {
-    e.preventDefault();
     const userInput = e.target.value;
     setTitleValue(userInput);
     setNotesList((prevNotes) =>

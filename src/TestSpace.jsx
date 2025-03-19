@@ -4,39 +4,64 @@ import { NoteListContext } from "./components/NoteListContext";
 const TestSpace = () => {
   // ? main functions: add note, keep track of inner texts, filter, search, delete
   const { notesList, setNotesList } = useContext(NoteListContext);
-  const [noteInfo, setNoteInfo] = useState([{ title: "", description: "" }]);
+  const [color, setColor] = useState("");
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const handleNewNote = (e) => {
-    setNotesList([...notesList, { title: title, description: description }]);
+  // when btn is pressed, empty object is created with special id
+  const handleNewNote = () => {
+    setNotesList([
+      ...notesList,
+      { title: "", description: "", color: "", id: crypto.randomUUID() },
+    ]);
     setTitle("");
-    setDescription("");
   };
+  // when title is
+  const handleTitleChange = (id, e) => {
+    const userInput = e.target.value;
+    setNotesList((prevNotes) =>
+      prevNotes.map((note) =>
+        note.id === id ? { ...note, title: userInput } : note,
+      ),
+    );
+  };
+
+  const handleDescriptionChange = (id, e) => {
+    const userInput = e.target.value;
+    setNotesList((prevNotes) =>
+      prevNotes.map((note) =>
+        note.id === id ? { ...note, description: userInput } : note,
+      ),
+    );
+  };
+
   console.log(notesList);
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">
+      <button className="btn btn-accent" onClick={handleNewNote}>
+        Add New Note
+      </button>
       {/* simplifying everything with useContext */}
-      <div className="join join-vertical">
-        <input
-          className="input input-warning join-item"
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <textarea
-          className="textarea join-item"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        ></textarea>
-        <button className="btn btn-warning join-item" onClick={handleNewNote}>
-          Add Note
-        </button>
-      </div>
+
       {notesList.map((note) => (
-        <div className="card card-sm h-fit w-fit border border-amber-300">
+        <div
+          key={note.id}
+          className="card card-sm h-fit w-fit border border-amber-300"
+        >
           <div className="card-body">
-            <h3 className="card-title">{note.title}</h3>
-            <p>{note.description}</p>
+            <div className="join join-vertical">
+              <input
+                className="input input-warning join-item"
+                type="text"
+                spellCheck="false"
+                value={note.title}
+                onChange={(e) => handleTitleChange(note.id, e)}
+              />
+              <textarea
+                className="textarea join-item"
+                value={note.description}
+                spellCheck="false"
+                onChange={(e) => handleDescriptionChange(note.id, e)}
+              ></textarea>
+            </div>
           </div>
         </div>
       ))}
