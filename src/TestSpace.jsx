@@ -52,17 +52,16 @@ const TestSpace = () => {
     ));
 
   //* DISPLAYING THE NOTES FROM FILTERS
-  let displayList = [];
-  const displayNotes = () => {
+  const displayNotes = useMemo(() => {
     // color
     if (filter.category === "color") {
       if (filter.option != "All") {
         const filterColor = searchList.filter(
           (note) => note.color === filter.option,
         );
-        displayList = filterColor;
+        return filterColor;
       } else {
-        displayList = searchList;
+        return searchList;
       }
     } else if (filter.category === "date") {
       // date
@@ -79,15 +78,16 @@ const TestSpace = () => {
         );
         filterDate.push(noteOrder);
       }
-      filter.option === "Newest to Oldest"
-        ? (displayList = filterDate.reverse())
-        : (displayList = filterDate);
+
+      if (filterOption === "Newest to Oldest") {
+        return filterDate.reverse();
+      } else {
+        return filterDate;
+      }
     } else {
-      displayList = searchList;
+      return searchList;
     }
-    return displayList;
-  };
-  //console.log(searchList);
+  }, [filter, searchList]);
   //* CURRENT DATE
   const currentDate = () => {
     const date = new Date().toLocaleDateString("en-US", {
@@ -143,7 +143,7 @@ const TestSpace = () => {
     setNotesList(updatedNotes);
   };
 
-  displayNotes();
+  // displayNotes();
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">
       <ul className="menu bg-base-300 rounded-box w-65">
@@ -189,7 +189,7 @@ const TestSpace = () => {
 
       {/* simplifying everything with useContext */}
       {/* determine here if searchList or filterList will be rendered! filterList will still use searchList anyway so it should be fine? */}
-      {displayList.map((note) => {
+      {displayNotes.map((note) => {
         const divStyles = `card card-sm h-fit w-fit border border${note.color}`;
         const inputStyles = `input ${note.color} join-item text-black`;
         return (
