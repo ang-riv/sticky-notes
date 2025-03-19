@@ -6,8 +6,7 @@ const TestSpace = () => {
   const { notesList, setNotesList } = useContext(NoteListContext);
   const [color, setColor] = useState("");
   const btnColors = ["btn-accent", "btn-warning", "btn-primary", "btn-success"];
-  const [isFilterActive, setIsFilterActive] = useState(false);
-  const [filterColor, setFilterColor] = useState("");
+  const [filter, setFilter] = useState({ category: "", option: "" });
   const [searchTerm, setSearchTerm] = useState("");
   //* SEARCH - run only if anything in list or searchTerm changes
   const searchList = useMemo(() => {
@@ -20,38 +19,75 @@ const TestSpace = () => {
   // * FILTERS - DATE AND COLOR
   // filter options
   const dateOptions = ["Newest to Oldest", "Oldest to Newest"];
-  const noteOptions = ["All", "pink-bg", "yellow-bg", "green-bg", "blue-bg"];
-  const filterOptions = (optionArr) =>
-    optionArr.map((option) => (
+  const colorOptions = ["All", "pink-bg", "yellow-bg", "green-bg", "blue-bg"];
+
+  // DATE + COLOR FILTER
+  const filterDateOptions = () =>
+    dateOptions.map((option) => (
       <li>
         <label>
-          <input type="radio" name="filter" className="radio radio-sm" />
+          <input
+            type="radio"
+            name="filter"
+            className="radio radio-sm"
+            onClick={() => setFilter({ category: "date", option: option })}
+          />
+          {option}
+        </label>
+      </li>
+    ));
+  const filterColorOptions = () =>
+    colorOptions.map((option) => (
+      <li>
+        <label>
+          <input
+            type="radio"
+            name="filter"
+            className="radio radio-sm"
+            onClick={() => setFilter({ category: "color", option: option })}
+          />
           {option}
         </label>
       </li>
     ));
 
-  // DATE + COLOR FILTER
-  const currentFilter = (filter) => {
-    const dateOrder = [];
-    if (isFilterActive)
-      if (filter.type === "color") {
-        searchList.filter((note) => note.color === filter.value);
-      } else if (filter.type === "date") {
-        const dates = searchList.map((note) => Date.parse(note.date));
-        // parse all the dates + sort
-        // find loop through again, find the corresponding note in the parsed form and return in an arr in that order
-        // do it once in one way then pick whether to send it backwards or not if filter.value = newToOld
-        for (let i = 0; i < dates.length; i++) {
-          const element = dates[i];
-          const noteOrder = searchList.find(
-            (note) => Date.parse(note.date) === element,
-          );
-          dateOrder.push(noteOrder);
-        }
+  //* DISPLAYING THE NOTES FROM FILTERS
+  let displayList = [];
+  const displayNotes = () => {
+    // color
+    if (filter.category === "color") {
+      if (filter.option != "All") {
+        const filterColor = searchList.filter(
+          (note) => note.color === filter.option,
+        );
+        displayList = filterColor;
+      } else {
+        displayList = searchList;
       }
+    } else if (filter.category === "date") {
+      // date
+      const filterDate = [];
+      // parse + sort old to new
+      const parsedDates = searchList
+        .map((note) => Date.parse(note.date))
+        .sort((a, b) => a - b);
+      // find the note in the correct date order
+      for (let i = 0; i < parsedDates.length; i++) {
+        const date = parsedDates[i];
+        const noteOrder = searchList.find(
+          (note) => Date.parse(note.date) === date,
+        );
+        filterDate.push(noteOrder);
+      }
+      filter.option === "Newest to Oldest"
+        ? (displayList = filterDate.reverse())
+        : (displayList = filterDate);
+    } else {
+      displayList = searchList;
+    }
+    return displayList;
   };
-
+  //console.log(searchList);
   //* CURRENT DATE
   const currentDate = () => {
     const date = new Date().toLocaleDateString("en-US", {
@@ -107,6 +143,7 @@ const TestSpace = () => {
     setNotesList(updatedNotes);
   };
 
+  displayNotes();
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">
       <ul className="menu bg-base-300 rounded-box w-65">
@@ -117,13 +154,13 @@ const TestSpace = () => {
               <li>
                 <details>
                   <summary>Date</summary>
-                  <ul>{filterOptions(dateOptions)}</ul>
+                  <ul>{filterDateOptions()}</ul>
                 </details>
               </li>
               <li>
                 <details>
                   <summary>Colors</summary>
-                  <ul>{filterOptions(noteOptions)}</ul>
+                  <ul>{filterColorOptions()}</ul>
                 </details>
               </li>
             </ul>
@@ -138,7 +175,7 @@ const TestSpace = () => {
         onChange={(e) => setSearchTerm(e.target.value)}
       />
       <div className="join">
-        {noteOptions.map((color) => {
+        {colorOptions.map((color) => {
           const btnStyles = `btn ${color} rounded-full w-10 h-10 mr-2`;
           return (
             <button
@@ -152,9 +189,9 @@ const TestSpace = () => {
 
       {/* simplifying everything with useContext */}
       {/* determine here if searchList or filterList will be rendered! filterList will still use searchList anyway so it should be fine? */}
-      {searchList.map((note) => {
+      {displayList.map((note) => {
         const divStyles = `card card-sm h-fit w-fit border border${note.color}`;
-        const inputStyles = `input ${note.color} join-item`;
+        const inputStyles = `input ${note.color} join-item text-black`;
         return (
           <div key={note.id} className={divStyles}>
             <div className="card-body">
