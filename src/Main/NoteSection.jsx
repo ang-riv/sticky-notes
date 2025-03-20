@@ -19,11 +19,10 @@ const NoteSection = () => {
         note.description.toLowerCase().includes(searchText.toLowerCase()),
     );
   }, [notesList, searchText]);
-  console.log(searchList);
   return (
     <div className="mt-2.5 flex h-full w-full flex-col items-center justify-start">
       {searchList.map((note) => (
-        <Note noteDetails={note} />
+        <Note key={note.id} noteDetails={note} />
       ))}
     </div>
   );

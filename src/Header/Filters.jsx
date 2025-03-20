@@ -2,29 +2,52 @@ import React, { useContext } from "react";
 import { NoteListContext } from "../components/NoteListContext";
 
 const Filters = () => {
-  let { setFiltersActive } = useContext(NoteListContext);
+  let { filter, setFilter } = useContext(NoteListContext);
   const dateOptions = ["Newest to Oldest", "Oldest to Newest"];
-  const noteColors = ["All", "pink-bg", "yellow-bg", "green-bg", "blue-bg"];
+  const colorOptions = [
+    { title: "All", color: "" },
+    { title: "Pink", color: "pink-bg" },
+    { title: "Yellow", color: "yellow-bg" },
+    { title: "Green", color: "green-bg" },
+    { title: "Blue", color: "blue-bg" },
+  ];
 
-  const selectedFilter = (e, filter) => {
-    e.target.checked ? setFiltersActive(filter) : setFiltersActive("");
-  };
-
-  const filterOptions = (optionArr) =>
-    optionArr.map((option) => (
-      <li>
+  const filterDateOptions = () =>
+    dateOptions.map((option) => (
+      <li key={option}>
         <label>
           <input
             type="radio"
             name="filter"
             className="radio radio-sm"
-            onClick={(e) => selectedFilter(e, option)}
+            onClick={() => setFilter({ category: "date", option: option })}
           />
           {option}
         </label>
       </li>
     ));
 
+  const filterColorOptions = () =>
+    colorOptions.map((option) => (
+      <li key={option.title}>
+        <label>
+          <input
+            type="radio"
+            name="filter"
+            className="radio radio-sm"
+            onClick={() =>
+              setFilter({
+                category: "color",
+                option: option.color,
+              })
+            }
+          />
+          {option.title}
+        </label>
+      </li>
+    ));
+
+  console.log(filter);
   return (
     <ul className="menu menu-lg bg-base-200 rounded-box mb-2 w-full border border-gray-300 p-0">
       <li>
@@ -34,13 +57,13 @@ const Filters = () => {
             <li>
               <details>
                 <summary>Date</summary>
-                <ul>{filterOptions(dateOptions)}</ul>
+                <ul>{filterDateOptions()}</ul>
               </details>
             </li>
             <li>
               <details>
                 <summary>Color</summary>
-                <ul>{filterOptions(noteColors)}</ul>
+                <ul>{filterColorOptions()}</ul>
               </details>
             </li>
           </ul>

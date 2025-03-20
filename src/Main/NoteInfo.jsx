@@ -1,6 +1,6 @@
 import React from "react";
 
-const NoteInfo = ({ noteDate }) => {
+const NoteInfo = ({ date }) => {
   const tagArr = [];
   const userTags = ["new", "beauty", "school", "other"];
 
@@ -19,8 +19,8 @@ const NoteInfo = ({ noteDate }) => {
   });
   return (
     <div>
-      <div className="absolute bottom-0 z-10 h-2/12 w-full rounded-b-xl bg-gray-50 p-2.5">
-        <p>Created: {noteDate}</p>
+      <div className="absolute bottom-0 z-10 h-2/12 w-full rounded-b-xl bg-gray-100 p-2">
+        <p className="text-gray-800"> Created: {date}</p>
       </div>
     </div>
   );

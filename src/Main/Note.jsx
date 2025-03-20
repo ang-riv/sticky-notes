@@ -95,9 +95,11 @@ const Note = ({ noteDetails }) => {
             value={title}
             onChange={(e) => handleTitleChange(id, e)}
           />
-          <button className="btn" onClick={alertMe}>
-            X
-          </button>
+          <div className="flex w-2/12 items-center justify-center">
+            <button className="btn m-1 p-3.5" onClick={alertMe}>
+              X
+            </button>
+          </div>
         </div>
         {/* main text section */}
         <div className="relative h-5/7 w-full overflow-y-scroll rounded-b-xl p-2.5">

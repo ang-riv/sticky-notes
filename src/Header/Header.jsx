@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { SearchIcon, NoteIcon } from "../utils/svgIconData";
+import { NoteIcon } from "../utils/svgIconData";
 import { NoteListContext } from "../components/NoteListContext";
 import Filters from "./Filters";
 import Search from "./Search";
@@ -35,7 +35,6 @@ const Header = () => {
       },
     ]);
   };
-  console.log(notesList);
   return (
     <div className="flex h-fit w-screen flex-col content-center justify-center p-4 outline-1 outline-black">
       {/* TITLE */}

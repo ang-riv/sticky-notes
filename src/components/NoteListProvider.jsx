@@ -13,7 +13,7 @@ function NoteListProvider({ children }) {
     localStorage.setItem("notes", JSON.stringify(debounceNotes));
   }, [debounceNotes]);
   //* filters
-  const [filtersActive, setFiltersActive] = useState("");
+  const [filter, setFilter] = useState({ category: "", option: "" });
 
   //* search
   const [searchText, setSearchText] = useState("");
@@ -27,8 +27,8 @@ function NoteListProvider({ children }) {
         setNoteColor,
         notesList,
         setNotesList,
-        filtersActive,
-        setFiltersActive,
+        filter,
+        setFilter,
         searchText,
         setSearchText,
       }}
