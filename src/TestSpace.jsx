@@ -2,10 +2,8 @@ import React, { useContext, useState, useMemo } from "react";
 import { NoteListContext } from "./components/NoteListContext";
 
 const TestSpace = () => {
-  // ? main functions: add note, keep track of inner texts, filter, search, delete
+  // ? main functions: add note, keep track of inner texts, filter, search, delete, local storage
   const { notesList, setNotesList } = useContext(NoteListContext);
-  const [color, setColor] = useState("");
-  const btnColors = ["btn-accent", "btn-warning", "btn-primary", "btn-success"];
   const [filter, setFilter] = useState({ category: "", option: "" });
   const [searchTerm, setSearchTerm] = useState("");
   //* SEARCH - run only if anything in list or searchTerm changes
@@ -24,7 +22,7 @@ const TestSpace = () => {
   // DATE + COLOR FILTER
   const filterDateOptions = () =>
     dateOptions.map((option) => (
-      <li>
+      <li key={option}>
         <label>
           <input
             type="radio"
@@ -38,7 +36,7 @@ const TestSpace = () => {
     ));
   const filterColorOptions = () =>
     colorOptions.map((option) => (
-      <li>
+      <li key={option}>
         <label>
           <input
             type="radio"
@@ -88,6 +86,7 @@ const TestSpace = () => {
       return searchList;
     }
   }, [filter, searchList]);
+
   //* CURRENT DATE
   const currentDate = () => {
     const date = new Date().toLocaleDateString("en-US", {
@@ -188,7 +187,6 @@ const TestSpace = () => {
       </div>
 
       {/* simplifying everything with useContext */}
-      {/* determine here if searchList or filterList will be rendered! filterList will still use searchList anyway so it should be fine? */}
       {displayNotes.map((note) => {
         const divStyles = `card card-sm h-fit w-fit border border${note.color}`;
         const inputStyles = `input ${note.color} join-item text-black`;
