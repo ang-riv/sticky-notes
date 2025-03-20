@@ -142,6 +142,10 @@ const TestSpace = () => {
     setNotesList(updatedNotes);
   };
 
+  // * CLEAR ALL NOTES
+  const handleClear = () => {
+    setNotesList([]);
+  };
   // displayNotes();
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">
@@ -166,13 +170,18 @@ const TestSpace = () => {
           </details>
         </li>
       </ul>
-      <input
-        className="input"
-        type="search"
-        placeholder="Search notes..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
+      <div className="join">
+        <input
+          className="input join-item"
+          type="search"
+          placeholder="Search notes..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <button className="btn btn-warning" onClick={handleClear}>
+          Clear List
+        </button>
+      </div>
       <div className="join">
         {colorOptions.map((color) => {
           const btnStyles = `btn ${color} rounded-full w-10 h-10 mr-2`;

@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NoteListContext } from "./NoteListContext";
-
+import { useDebounce } from "@uidotdev/usehooks";
 function NoteListProvider({ children }) {
-  const [numOfNotes, setNumOfNotes] = useState(0);
   const [noteColor, setNoteColor] = useState([]);
-  const [notesList, setNotesList] = useState([]);
+  const [numOfNotes, setNumOfNotes] = useState(0);
+  const [notesList, setNotesList] = useState(() => {
+    return JSON.parse(localStorage.getItem("notes")) || [];
+  });
 
+  const debounceNotes = useDebounce(notesList, 300);
+  useEffect(() => {
+    localStorage.setItem("notes", JSON.stringify(debounceNotes));
+  }, [debounceNotes]);
   //* filters
   const [filtersActive, setFiltersActive] = useState("");
 
