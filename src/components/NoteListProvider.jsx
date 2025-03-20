@@ -16,7 +16,7 @@ function NoteListProvider({ children }) {
   const [filtersActive, setFiltersActive] = useState("");
 
   //* search
-  const [searchActive, setSearchActive] = useState("");
+  const [searchText, setSearchText] = useState("");
 
   return (
     <NoteListContext.Provider
@@ -29,8 +29,8 @@ function NoteListProvider({ children }) {
         setNotesList,
         filtersActive,
         setFiltersActive,
-        searchActive,
-        setSearchActive,
+        searchText,
+        setSearchText,
       }}
     >
       {children}

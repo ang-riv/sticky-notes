@@ -5,76 +5,18 @@ import Filters from "./Filters";
 import Search from "./Search";
 const Header = () => {
   // updating the new number of notes and what color to make them
-  let {
-    numOfNotes,
-    setNumOfNotes,
-    noteColor,
-    setNoteColor,
-    notesList,
-    setNotesList,
-    filtersActive,
-  } = useContext(NoteListContext);
+  const { notesList, setNotesList, searchText } = useContext(NoteListContext);
 
-  //* date
-  const currentDate = () => {
-    const date = new Date().toLocaleDateString("en-US", {
-      second: "2-digit",
-      minute: "2-digit",
-      hour: "2-digit",
-      month: "2-digit",
-      day: "2-digit",
-      year: "2-digit",
-    });
-
-    // only retrieve date when the note isn't entirely empty
-    return date;
-  };
-
-  //* making a new note
-  const handleNewNote = (color) => {
-    setNumOfNotes((numOfNotes += 1));
-    setNoteColor([...noteColor, color]);
-
-    const noteDetails = {
-      id: crypto.randomUUID(),
-      title: "",
-      mainText: "",
-      date: currentDate(),
-      hasMatch: false,
-      tags: "",
-      bgColor: color,
-    };
-
-    setNotesList([...notesList, noteDetails]);
-  };
-
-  //* sticky note colors
-  const noteColors = ["pink-bg", "yellow-bg", "green-bg", "blue-bg"];
-  const colorList = [];
-  noteColors.map((color, index) => {
-    let classList = "";
-    const buttonClasses = `btn ${color} h-[40px] w-[40px] rounded-full mr-2`;
-    const lastButton = `btn ${color} h-[40px] w-[40px] rounded-full mr-2 last:mr-0`;
-    index !== noteColors.length - 1
-      ? (classList = buttonClasses)
-      : (classList = lastButton);
-    colorList.push(
-      <button
-        className={classList}
-        onClick={() => handleNewNote(color)}
-      ></button>,
-    );
-  });
   return (
     <div className="flex h-fit w-screen flex-col content-center justify-center p-4 outline-1 outline-black">
       {/* TITLE */}
       <div className="mb-2.5 flex h-fit w-fit flex-col items-center justify-center">
         <NoteIcon />
         <h1 className="text-center text-5xl">Super Sticky Notes</h1>
-        <h2>{filtersActive}</h2>
       </div>
       {/* SEARCH */}
       <Search />
+      <h2>{searchText}</h2>
       {/* FILTER/SORT */}
       <Filters />
       {/* NEW NOTE*/}
@@ -91,7 +33,7 @@ const Header = () => {
           tabIndex={0}
           className="dropdown-content bg-base-100 rounded-box z-1 flex w-50 content-center justify-center p-2 shadow-md"
         >
-          <div className="flex content-center justify-between">{colorList}</div>
+          <div className="flex content-center justify-between"></div>
         </div>
       </div>
     </div>

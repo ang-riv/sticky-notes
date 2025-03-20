@@ -2,11 +2,7 @@ import React, { useContext } from "react";
 import { SearchIcon } from "../utils/svgIconData";
 import { NoteListContext } from "../components/NoteListContext";
 const Search = () => {
-  let { searchActive, setSearchActive } = useContext(NoteListContext);
-  const handleChange = (e) => {
-    const userInput = e.target.value;
-    setSearchActive(userInput.toLowerCase());
-  };
+  const { searchText, setSearchText } = useContext(NoteListContext);
   return (
     <div className="flex justify-center">
       <label className="input my-2 w-3xs">
@@ -15,8 +11,8 @@ const Search = () => {
           className="text-lg"
           type="search"
           placeholder="Search for a note..."
-          onChange={handleChange}
-          value={searchActive}
+          onChange={(e) => setSearchText(e.target.value)}
+          value={searchText}
         />
       </label>
     </div>
