@@ -19,16 +19,8 @@ const NoteInfo = ({ noteDate }) => {
   });
   return (
     <div>
-      <div className="absolute bottom-0 z-10 h-3/12 w-full rounded-b-xl bg-gray-50 p-2.5">
+      <div className="absolute bottom-0 z-10 h-2/12 w-full rounded-b-xl bg-gray-50 p-2.5">
         <p>Created: {noteDate}</p>
-        <div className="flex w-full flex-row">
-          <div className="">
-            <p>Tags: </p>
-          </div>
-          <div className="w-full overflow-x-scroll">
-            <ul className="flex flex-row justify-evenly">{tagArr}</ul>
-          </div>
-        </div>
       </div>
     </div>
   );

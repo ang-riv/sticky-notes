@@ -15,7 +15,14 @@ const App = () => {
         >
           Toggle Views
         </button>
-        {toggleTest ? <TestSpace /> : <Header />}
+        {toggleTest ? (
+          <TestSpace />
+        ) : (
+          <>
+            <Header />
+            <NoteSection />
+          </>
+        )}
       </NoteListProvider>
     </div>
   );

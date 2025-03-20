@@ -45,7 +45,6 @@ const Header = () => {
       </div>
       {/* SEARCH */}
       <Search />
-      <h2>{searchText}</h2>
       {/* FILTER/SORT */}
       <Filters />
       {/* NEW NOTE*/}
