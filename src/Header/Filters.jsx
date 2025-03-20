@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { NoteListContext } from "../components/NoteListContext";
 
 const Filters = () => {
-  let { filter, setFilter } = useContext(NoteListContext);
+  let { setFilter } = useContext(NoteListContext);
   const dateOptions = ["Newest to Oldest", "Oldest to Newest"];
   const colorOptions = [
     { title: "All", color: "" },
@@ -47,7 +47,6 @@ const Filters = () => {
       </li>
     ));
 
-  console.log(filter);
   return (
     <ul className="menu menu-lg bg-base-200 rounded-box mb-2 w-full border border-gray-300 p-0">
       <li>
@@ -65,6 +64,9 @@ const Filters = () => {
                 <summary>Color</summary>
                 <ul>{filterColorOptions()}</ul>
               </details>
+            </li>
+            <li onClick={() => setFilter({ category: "", option: "" })}>
+              <summary>Clear Filters</summary>
             </li>
           </ul>
         </details>
