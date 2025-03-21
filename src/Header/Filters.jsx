@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { NoteListContext } from "../components/NoteListContext";
+import { FilterIcon } from "../utils/svgIconData";
 
 const Filters = () => {
   let { setFilter } = useContext(NoteListContext);
@@ -51,7 +52,10 @@ const Filters = () => {
     <ul className="menu menu-lg bg-base-200 rounded-box mb-2 w-full border border-gray-300 p-0">
       <li>
         <details>
-          <summary className="text-lg">Filter by...</summary>
+          <summary className="text-lg">
+            <FilterIcon />
+            Filter by...
+          </summary>
           <ul>
             <li>
               <details>

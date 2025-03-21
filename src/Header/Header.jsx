@@ -39,8 +39,10 @@ const Header = () => {
     <div className="flex h-fit w-screen flex-col content-center justify-center p-4">
       {/* TITLE */}
       <div className="mb-2.5 flex h-fit w-fit flex-wrap items-center justify-center">
-        <NoteIcon />
-        <h1 className="text-center text-5xl">Super Sticky Notes</h1>
+        <div className="bg-warning mr-2.5 rounded-full p-2">
+          <NoteIcon />
+        </div>
+        <h1 className="my-2 text-center text-5xl">Super Sticky Notes</h1>
       </div>
       {/* NOTE ACTIONS/CONTENT-WRAPPER */}
       <div className="max-w-sm">
@@ -62,7 +64,7 @@ const Header = () => {
             {/* NOTE COLORS */}
             <div
               tabIndex={0}
-              className="dropdown-content bg-base-100 rounded-box z-1 mt-1 flex w-50 content-center justify-center border border-amber-400 p-2 shadow-md"
+              className="dropdown-content bg-base-100 rounded-box z-1 mt-1 flex w-50 content-center justify-center border border-gray-300 p-2 shadow-md"
             >
               <div className="flex items-center justify-between">
                 {colorOptions.map((color) => {
