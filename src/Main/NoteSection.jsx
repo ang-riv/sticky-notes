@@ -59,7 +59,7 @@ const NoteSection = () => {
   }, [filter, searchList]);
 
   return (
-    <div className="mt-2.5 flex h-full w-full flex-col items-center justify-start">
+    <div className="flex h-fit w-full flex-wrap justify-center bg-pink-200 sm:justify-start">
       {displayNotes.map((note) => (
         <Note key={note.id} noteDetails={note} />
       ))}

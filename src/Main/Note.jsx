@@ -46,7 +46,7 @@ const Note = ({ noteDetails }) => {
 
   // for changing the title and the description using the note id
   return (
-    <motion.div className="mb-5 h-fit w-fit">
+    <motion.div className="mx-2 mt-4 h-fit w-fit">
       {/* main sticky note */}
       <div className={noteMainStyles}>
         {alert ? (
