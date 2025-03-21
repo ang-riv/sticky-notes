@@ -5,7 +5,7 @@ const Search = () => {
   const { searchText, setSearchText } = useContext(NoteListContext);
   return (
     <div className="flex justify-center">
-      <label className="input my-2 w-3xs">
+      <label className="input mb-2 w-full">
         <SearchIcon />
         <input
           className="text-lg"

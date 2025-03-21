@@ -1,6 +1,6 @@
 // all icons from icon-sets.iconify.design
 import React from "react";
-
+const iconSize = "70px";
 // HEADER ICON
 export function NoteIcon(props) {
   return (
