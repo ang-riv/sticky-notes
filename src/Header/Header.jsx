@@ -36,22 +36,22 @@ const Header = () => {
     ]);
   };
   return (
-    <div className="flex h-fit w-screen flex-col content-center justify-center bg-green-800 p-4">
+    <div className="flex h-fit w-screen flex-col content-center justify-center p-4">
       {/* TITLE */}
-      <div className="mb-2.5 flex h-fit w-fit flex-wrap items-center justify-center outline outline-yellow-600">
+      <div className="mb-2.5 flex h-fit w-fit flex-wrap items-center justify-center">
         <NoteIcon />
         <h1 className="text-center text-5xl">Super Sticky Notes</h1>
       </div>
       {/* NOTE ACTIONS/CONTENT-WRAPPER */}
-      <div className="max-w-sm border border-blue-400">
+      <div className="max-w-sm">
         {/* SEARCH */}
         <Search />
         {/* FILTER/SORT */}
         <Filters />
         {/* NOTE BUTTONS */}
-        <div className="flex justify-around border border-purple-400">
+        <div className="flex justify-around">
           {/* NEW NOTE*/}
-          <div className="dropdown dropdown-bottom dropdown-center flex justify-center">
+          <div className="dropdown dropdown-start">
             <div
               tabIndex={0}
               role="button"
@@ -62,7 +62,7 @@ const Header = () => {
             {/* NOTE COLORS */}
             <div
               tabIndex={0}
-              className="dropdown-content bg-base-100 rounded-box z-1 flex w-50 content-center justify-center border border-amber-400 p-2 shadow-md"
+              className="dropdown-content bg-base-100 rounded-box z-1 mt-1 flex w-50 content-center justify-center border border-amber-400 p-2 shadow-md"
             >
               <div className="flex items-center justify-between">
                 {colorOptions.map((color) => {

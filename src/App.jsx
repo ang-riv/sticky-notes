@@ -8,6 +8,7 @@ const App = () => {
     <div data-theme="dark" className="h-screen w-screen">
       <NoteListProvider>
         <Header />
+        <div className="divider m-2"></div>
         <NoteSection />
       </NoteListProvider>
     </div>

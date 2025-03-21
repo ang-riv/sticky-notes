@@ -1,4 +1,4 @@
-import React, { useContext, useState, useMemo } from "react";
+import React, { useContext, useMemo } from "react";
 import Note from "./Note";
 import { NoteListContext } from "../components/NoteListContext";
 const NoteSection = () => {
@@ -48,7 +48,7 @@ const NoteSection = () => {
         filterDate.push(noteOrder);
       }
 
-      if (filterOption === "Newest to Oldest") {
+      if (filter.option === "Newest to Oldest") {
         return filterDate.reverse();
       } else {
         return filterDate;
@@ -59,7 +59,7 @@ const NoteSection = () => {
   }, [filter, searchList]);
 
   return (
-    <div className="flex h-fit w-full flex-wrap justify-center bg-pink-200 sm:justify-start">
+    <div className="flex h-fit w-full flex-wrap justify-center sm:justify-start">
       {displayNotes.map((note) => (
         <Note key={note.id} noteDetails={note} />
       ))}
