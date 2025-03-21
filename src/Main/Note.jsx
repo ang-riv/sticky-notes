@@ -52,7 +52,7 @@ const Note = ({ noteDetails }) => {
         {alert ? (
           <div
             role="alert"
-            className="alert alert-warning absolute z-20 flex h-full w-full flex-col items-center justify-center border-4 border-amber-800"
+            className="alert alert-warning absolute z-20 flex h-full w-full flex-col items-center justify-center rounded-xl border-4 border-amber-900"
           >
             <div className="flex items-center justify-baseline">
               <WarningIcon />
@@ -60,19 +60,19 @@ const Note = ({ noteDetails }) => {
               <WarningIcon />
             </div>
 
-            <p className="w-full text-center text-[1.125em]">
-              Are you sure you want to delete your sticky note? You'll lose all
-              your info!
+            <p className="w-full text-center text-[1.125em] font-semibold">
+              Are you sure you want to delete your sticky note?
+              <span className="ml-1 underline">You'll lose all your info!</span>
             </p>
             <div>
               <button
-                className="btn btn-lg mt-2.5 mr-5 rounded-xl p-4"
+                className="btn btn-lg mt-2.5 mr-5 rounded-xl p-4 font-medium"
                 onClick={() => setAlert(false)}
               >
                 Cancel
               </button>
               <button
-                className="btn btn-lg mt-2.5 rounded-xl p-4"
+                className="btn btn-accent btn-lg mt-2.5 rounded-xl p-4 font-medium"
                 onClick={() => handleRemove(id)}
               >
                 Delete
@@ -96,7 +96,7 @@ const Note = ({ noteDetails }) => {
             onChange={(e) => handleTitleChange(id, e)}
           />
           <div className="flex w-2/12 items-center justify-center">
-            <button className="btn m-1 p-3.5" onClick={alertMe}>
+            <button className="btn btn-square m-1" onClick={alertMe}>
               X
             </button>
           </div>
