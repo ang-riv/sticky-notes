@@ -20,7 +20,7 @@ const NoteInfo = ({ date, isFocused }) => {
         variants={variants}
         initial="initial"
         animate={isFocused ? "hideNote" : ""}
-        className="absolute bottom-0 z-10 h-2/12 w-full origin-bottom rounded-b-xl bg-gray-100 p-2"
+        className="absolute bottom-0 z-10 h-2/12 w-full origin-bottom rounded-b-xl bg-white p-2"
       >
         <p className="text-gray-800"> Created: {date}</p>
       </motion.div>
