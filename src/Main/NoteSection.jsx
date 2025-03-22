@@ -5,12 +5,6 @@ import { AnimatePresence } from "motion/react";
 const NoteSection = () => {
   // create a note using the array with the bg color chosen
   const { notesList, searchText, filter } = useContext(NoteListContext);
-  let filteredList = [];
-  let noteColors = ["pink-bg", "yellow-bg", "green-bg", "blue-bg"];
-  let noteOptions = {
-    colors: ["pink-bg", "yellow-bg", "green-bg", "blue-bg"],
-    date: ["Newest to Oldest", "Oldest to Newest"],
-  };
 
   //* SEARCH - run only if anything in list or searchTerm changes
   const searchList = useMemo(() => {

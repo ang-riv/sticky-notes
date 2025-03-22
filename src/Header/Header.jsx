@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
-import { NoteIcon } from "../utils/svgIconData";
+import React, { useState, useContext } from "react";
+import { CheckIcon, NoteIcon } from "../utils/svgIconData";
+import { motion } from "motion/react";
 import { NoteListContext } from "../components/NoteListContext";
 import Filters from "./Filters";
 import Search from "./Search";
@@ -35,6 +36,7 @@ const Header = () => {
       },
     ]);
   };
+  const [showCheck, setShowCheck] = useState("");
   return (
     <div className="flex h-fit w-screen flex-col content-center justify-center p-4">
       {/* TITLE */}
@@ -68,12 +70,17 @@ const Header = () => {
             >
               <div className="flex items-center justify-between">
                 {colorOptions.map((color) => {
-                  const colorStyles = `${color} w-10 h-10 rounded-full mx-1`;
+                  const colorStyles = `${color} ${showCheck === color ? "outline-2 outline-gray-300" : ""} w-10 h-10 rounded-full mx-1 flex justify-center items-center cursor-pointer`;
                   return (
-                    <div
+                    <motion.div
+                      id={color}
                       className={colorStyles}
                       onClick={() => handleNewNote(color)}
-                    ></div>
+                      onHoverStart={() => setShowCheck(color)}
+                      onHoverEnd={() => setShowCheck("")}
+                    >
+                      {showCheck === color ? <CheckIcon /> : <></>}
+                    </motion.div>
                   );
                 })}
               </div>

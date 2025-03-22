@@ -1,6 +1,6 @@
 // all icons from icon-sets.iconify.design
 import React from "react";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 // HEADER ICON
 export function NoteIcon(props) {
   return (
@@ -131,31 +131,35 @@ export function FilterIcon(props) {
 }
 //NEW STICKY NOTE HOVER ICON
 export function CheckIcon(props) {
+  const variants = {
+    hidden: { opacity: 1, strokeDashoffset: 80 },
+    check: { opacity: 1, strokeDashoffset: 0 },
+  };
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={80}
-      height={80}
-      viewBox="0 0 24 24"
-      {...props}
-    >
-      <path
-        fill="none"
-        stroke="currentColor"
-        strokeDasharray={80}
-        strokeDashoffset={80}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M5 11l6 6l10 -10"
+    <AnimatePresence>
+      <motion.svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={30}
+        height={30}
+        viewBox="0 0 24 24"
+        {...props}
       >
-        <animate
-          fill="freeze"
-          attributeName="stroke-dashoffset"
-          dur="0.4s"
-          values="24;0"
-        ></animate>
-      </path>
-    </svg>
+        <motion.path
+          fill="none"
+          stroke="oklch(44% 0.03 256.802)"
+          strokeDasharray={80}
+          strokeDashoffset={80}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={3}
+          d="M5 11l6 6l10 -10"
+          variants={variants}
+          animate="check"
+          initial="hidden"
+          exit="hidden"
+          transition={{ duration: 0.8, ease: "easeInOut" }}
+        ></motion.path>
+      </motion.svg>
+    </AnimatePresence>
   );
 }
