@@ -12,9 +12,11 @@ function NoteListProvider({ children }) {
   useEffect(() => {
     localStorage.setItem("notes", JSON.stringify(debounceNotes));
   }, [debounceNotes]);
-  //* filters
-  const [filter, setFilter] = useState({ category: "", option: "" });
-
+  //* filters - default is newest note to oldest note
+  const [filter, setFilter] = useState({
+    category: "date",
+    option: "Newest to Oldest",
+  });
   //* search
   const [searchText, setSearchText] = useState("");
 

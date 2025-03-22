@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import NoteInfo from "./NoteInfo";
 import { NoteListContext } from "../components/NoteListContext";
 import { WarningIcon } from "../utils/svgIconData";
@@ -10,8 +10,33 @@ const Note = ({ noteDetails }) => {
   // create note with the chosen background color
   const noteMainStyles = ` ${color} relative h-[290px] w-[290px] rounded-xl border border-gray-400 shadow-sm`;
 
-  const [alert, setAlert] = useState(false);
+  //* ANIMATIONS
+  const variants = {
+    hidden: {
+      opacity: 0,
+      scale: 0,
+      transition: { duration: 0.3, ease: "easeInOut" },
+    },
+    enter: {
+      opacity: 1,
+      scale: 1,
+      transition: { type: "spring", bounce: 0.3 },
+    },
+    alertInitial: {
+      opacity: 1,
+      scale: 1,
+      x: 0,
+      y: 0,
+    },
+    alertTitle: {
+      opacity: 1,
+      scale: [1, 1.2, 1],
+      transition: { duration: 1, times: [0, 0.5, 1] },
+    },
+  };
 
+  // * DELETE NOTE ALERT
+  const [alert, setAlert] = useState(false);
   const alertMe = () => {
     setAlert(true);
   };
@@ -46,7 +71,13 @@ const Note = ({ noteDetails }) => {
 
   // for changing the title and the description using the note id
   return (
-    <motion.div className="mx-2 mt-4 h-fit w-fit">
+    <motion.div
+      variants={variants}
+      initial="hidden"
+      animate="enter"
+      exit="hidden"
+      className="mx-2 mt-4 h-fit w-fit"
+    >
       {/* main sticky note */}
       <div className={noteMainStyles}>
         {alert ? (
@@ -55,9 +86,19 @@ const Note = ({ noteDetails }) => {
             className="alert alert-warning absolute z-20 flex h-full w-full flex-col items-center justify-center rounded-xl border-4 border-amber-900"
           >
             <div className="flex items-center justify-baseline">
-              <WarningIcon />
-              <span className="px-3 text-4xl font-bold">Hold it!</span>
-              <WarningIcon />
+              <AnimatePresence>
+                <WarningIcon variants={variants} />
+
+                <motion.span
+                  variants={variants}
+                  initial="alertInitial"
+                  animate="alertTitle"
+                  className="px-3.5 text-4xl font-bold"
+                >
+                  Hold it!
+                </motion.span>
+                <WarningIcon variants={variants} />
+              </AnimatePresence>
             </div>
 
             <p className="w-full text-center text-[1.125em] font-semibold">

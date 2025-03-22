@@ -1,6 +1,7 @@
 import React, { useContext, useMemo } from "react";
 import Note from "./Note";
 import { NoteListContext } from "../components/NoteListContext";
+import { AnimatePresence } from "motion/react";
 const NoteSection = () => {
   // create a note using the array with the bg color chosen
   const { notesList, searchText, filter } = useContext(NoteListContext);
@@ -60,9 +61,11 @@ const NoteSection = () => {
 
   return (
     <div className="flex h-fit w-full flex-wrap justify-center sm:justify-start">
-      {displayNotes.map((note) => (
-        <Note key={note.id} noteDetails={note} />
-      ))}
+      <AnimatePresence>
+        {displayNotes.map((note) => (
+          <Note key={note.id} noteDetails={note} />
+        ))}
+      </AnimatePresence>
     </div>
   );
 };

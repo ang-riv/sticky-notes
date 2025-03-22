@@ -6,7 +6,6 @@ const Filters = () => {
   let { setFilter } = useContext(NoteListContext);
   const dateOptions = ["Newest to Oldest", "Oldest to Newest"];
   const colorOptions = [
-    { title: "All", color: "" },
     { title: "Pink", color: "pink-bg" },
     { title: "Yellow", color: "yellow-bg" },
     { title: "Green", color: "green-bg" },
