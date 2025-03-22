@@ -10,6 +10,7 @@ const Note = ({ noteDetails }) => {
   // create note with the chosen background color
   const noteMainStyles = ` ${color} relative h-[290px] w-[290px] rounded-xl border border-gray-400 shadow-sm`;
 
+  const [isFocused, setIsFocused] = useState(false);
   //* ANIMATIONS
   const variants = {
     hidden: {
@@ -123,7 +124,6 @@ const Note = ({ noteDetails }) => {
         ) : (
           <></>
         )}
-        <NoteInfo />
         {/* title section */}
         <div className="relative flex h-1/5 w-full items-end justify-between rounded-t-xl border-b-1 border-gray-400 px-2.5 pt-2.5">
           <input
@@ -135,6 +135,8 @@ const Note = ({ noteDetails }) => {
             spellCheck="false"
             value={title}
             onChange={(e) => handleTitleChange(id, e)}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
           />
           <div className="flex w-2/12 items-center justify-center">
             <button className="btn btn-square m-1" onClick={alertMe}>
@@ -151,10 +153,12 @@ const Note = ({ noteDetails }) => {
             placeholder="Things to remember today..."
             value={description}
             onChange={(e) => handleDescriptionChange(id, e)}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
           ></textarea>
         </div>
         {/* details of the note */}
-        <NoteInfo date={date} />
+        <NoteInfo date={date} isFocused={isFocused} />
       </div>
     </motion.div>
   );

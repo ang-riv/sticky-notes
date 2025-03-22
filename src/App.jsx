@@ -5,7 +5,7 @@ import NoteListProvider from "./components/NoteListProvider";
 const App = () => {
   // switch between components
   return (
-    <div data-theme="bumblebee" className="h-screen w-screen">
+    <div data-theme="light" className="h-screen w-screen">
       <NoteListProvider>
         <Header />
         <div className="divider m-2"></div>
