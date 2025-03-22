@@ -1,5 +1,5 @@
 import React from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 const NoteInfo = ({ date, isFocused }) => {
   const variants = {
     initial: {
@@ -13,7 +13,6 @@ const NoteInfo = ({ date, isFocused }) => {
       transition: { type: "tween", ease: "easeInOut", duration: 0.3 },
     },
   };
-  console.log(isFocused);
   return (
     <motion.div>
       <motion.div

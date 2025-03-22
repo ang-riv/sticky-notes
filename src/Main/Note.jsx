@@ -128,7 +128,6 @@ const Note = ({ noteDetails }) => {
         <div className="relative flex h-1/5 w-full items-end justify-between rounded-t-xl border-b-1 border-gray-400 px-2.5 pt-2.5">
           <input
             type="text"
-            id="note-title"
             name="title"
             placeholder="Title"
             className="focus: text-xl text-gray-800 outline-none"

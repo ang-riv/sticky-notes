@@ -9,6 +9,7 @@ const Search = () => {
         <SearchIcon />
         <input
           className="text-lg"
+          name="search"
           type="search"
           placeholder="Search for a note..."
           onChange={(e) => setSearchText(e.target.value)}
