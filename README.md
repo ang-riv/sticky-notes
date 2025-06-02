@@ -1,12 +1,45 @@
-# React + Vite
+# Super Sticky Notes
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+If you don't write it down, you'll forget. Trust me.
 
-Currently, two official plugins are available:
+A React app that keeps track of everything important with sticky notes. Notes are saved in the local browser to revisit again and again when needed.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Built with:
 
-## Expanding the ESLint configuration
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white) ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white) ![Github Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white) ![DaisyUI](https://img.shields.io/badge/daisyui-5A0EF8?style=for-the-badge&logo=daisyui&logoColor=white)
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Motion (formerly Framer Motion)
+- Icons
+  - Iconify
+
+![Desktop View](./src/assets/sticky-notes.png)
+
+### Deployment
+
+https://ang-riv.github.io/sticky-notes/
+
+## Introduction
+
+Super Sticky Notes makes it easy to remember what you need to remember.
+
+## Features
+
+- **Dynamic Search:** find a note with a specific keyword in both the title and the main text fast with the search function.
+- **Filter:** find a note by date or color.
+- **Note Colors:** make a note stand out by making it a specific color.
+- **Confirm Deletion:** to prevent notes from being deleted by accident, an alert will pop up to confirm deletion.
+- **Clear Notes:** get rid of all the notes once you don't need it any more using the clear notes button.
+- **Scrollable Note:** each note is scrollable, so add in as much text as you want!
+
+## Challenges
+
+- **Problem**: Things that needed to work together were separated. Initially, the project was done in seperate components right away without taking into account what would need to work with what.
+  - **Solution**: Re-did the project all in one big component before figuring out what can be separated into smaller components.
+- **Problem**: Filtering notes based on date. Notes weren't showing up in order if they were created on the same day, especially if they were created very close in time to each other.
+  - **Solution**: Included the full date in each note down to the second.
+
+## Future Updates
+
+- Tags to further organize notes using the filter function
+- Multi-select notes to delete several notes
+- Alert confirmtation for Clear Notes button
