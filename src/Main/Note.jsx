@@ -144,10 +144,10 @@ const Note = ({ noteDetails }) => {
           </div>
         </div>
         {/* main text section */}
-        <div className="relative h-5/7 w-full overflow-y-scroll rounded-b-xl p-2.5">
+        <div className="relative h-5/7 w-full rounded-b-xl p-2.5">
           <textarea
             name="mainText"
-            className="text-mg relative z-0 h-full w-full resize-none border-0 text-gray-800 focus:outline-none"
+            className="text-mg relative z-0 h-full w-full resize-none border-0 pb-3 text-gray-800 focus:outline-none"
             spellCheck="false"
             placeholder="Things to remember today..."
             value={description}
