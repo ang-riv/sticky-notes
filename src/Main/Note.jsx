@@ -7,7 +7,6 @@ import { WarningIcon } from "../utils/svgIconData";
 const Note = ({ noteDetails }) => {
   const { notesList, setNotesList } = useContext(NoteListContext);
   const { id, color, date, title, description } = noteDetails;
-  // create note with the chosen background color
   const noteMainStyles = ` ${color} relative h-[290px] w-[290px] rounded-xl border border-gray-400 shadow-sm`;
 
   const [isFocused, setIsFocused] = useState(false);
@@ -137,8 +136,8 @@ const Note = ({ noteDetails }) => {
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
           />
-          <div className="flex w-2/12 items-center justify-center">
-            <button className="btn btn-square m-1" onClick={alertMe}>
+          <div className="flex items-center justify-center">
+            <button className="btn btn-square mb-1 text-lg" onClick={alertMe}>
               X
             </button>
           </div>
