@@ -136,10 +136,7 @@ const Note = ({ noteDetails }) => {
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
           />
-          <button
-            className="btn btn-square mb-1.5 text-lg text-amber-800"
-            onClick={alertMe}
-          >
+          <button className="btn btn-square mb-1.5 text-lg" onClick={alertMe}>
             X
           </button>
         </div>
