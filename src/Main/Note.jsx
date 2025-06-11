@@ -7,7 +7,7 @@ import { WarningIcon } from "../utils/svgIconData";
 const Note = ({ noteDetails }) => {
   const { notesList, setNotesList } = useContext(NoteListContext);
   const { id, color, date, title, description } = noteDetails;
-  const noteMainStyles = ` ${color} relative h-[290px] w-[290px] rounded-xl border border-gray-400 shadow-sm`;
+  const noteMainStyles = ` ${color} relative h-[18.125em] w-[18.75em] rounded-xl border border-gray-400 shadow-sm`;
 
   const [isFocused, setIsFocused] = useState(false);
   //* ANIMATIONS
@@ -124,7 +124,7 @@ const Note = ({ noteDetails }) => {
           <></>
         )}
         {/* title section */}
-        <div className="relative flex h-1/5 w-full items-end justify-between rounded-t-xl border-b-1 border-gray-400 px-2.5 pt-2.5">
+        <div className="relative flex h-1/5 w-full items-end justify-around rounded-t-xl border-b-1 border-gray-400 px-2.5 pt-2.5">
           <input
             type="text"
             name="title"
@@ -136,11 +136,12 @@ const Note = ({ noteDetails }) => {
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
           />
-          <div className="flex items-center justify-center">
-            <button className="btn btn-square mb-1 text-lg" onClick={alertMe}>
-              X
-            </button>
-          </div>
+          <button
+            className="btn btn-square mb-1.5 text-lg text-amber-800"
+            onClick={alertMe}
+          >
+            X
+          </button>
         </div>
         {/* main text section */}
         <div className="relative h-5/7 w-full rounded-b-xl p-2.5">
