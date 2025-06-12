@@ -1,9 +1,8 @@
 import React from "react";
 import Header from "./Header/Header";
 import NoteSection from "./Main/NoteSection";
-import NoteListProvider from "./components/NoteListProvider";
+import {NoteListProvider} from "./components/NoteListContext";
 const App = () => {
-  // switch between components
   return (
     <div data-theme="bumblebee" className="h-screen w-screen">
       <NoteListProvider>
