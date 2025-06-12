@@ -3,7 +3,6 @@ import Note from "./Note";
 import { NoteListContext } from "../components/NoteListContext";
 import { AnimatePresence } from "motion/react";
 const NoteSection = () => {
-  // create a note using the array with the bg color chosen
   const { notesList, searchText, filter } = useContext(NoteListContext);
 
   //* SEARCH - run only if anything in list or searchTerm changes
@@ -14,10 +13,8 @@ const NoteSection = () => {
         note.description.toLowerCase().includes(searchText.toLowerCase()),
     );
   }, [notesList, searchText]);
-  // * FILTERS - render notes depending on search + filter
 
   const displayNotes = useMemo(() => {
-    // color
     if (filter.category === "color") {
       if (filter.option != "All") {
         const filterColor = searchList.filter(
@@ -28,7 +25,6 @@ const NoteSection = () => {
         return searchList;
       }
     } else if (filter.category === "date") {
-      // date
       const filterDate = [];
       // parse + sort old to new
       const parsedDates = searchList

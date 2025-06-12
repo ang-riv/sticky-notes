@@ -9,7 +9,6 @@ const Header = () => {
   const { notesList, setNotesList } = useContext(NoteListContext);
   const colorOptions = ["pink-bg", "yellow-bg", "green-bg", "blue-bg"];
 
-  //* CURRENT DATE
   const currentDate = () => {
     const date = new Date().toLocaleDateString("en-US", {
       second: "2-digit",
@@ -22,8 +21,7 @@ const Header = () => {
 
     return date;
   };
-  // * ADD NEW NOTE
-  // when btn is pressed, empty object is created with special id
+
   const handleNewNote = (noteColor) => {
     setNotesList([
       ...notesList,
@@ -46,15 +44,12 @@ const Header = () => {
         </div>
         <h1 className="my-2 text-center text-5xl">Super Sticky Notes</h1>
       </div>
-      {/* NOTE ACTIONS/CONTENT-WRAPPER */}
+      {/* NOTE ACTIONS */}
       <div className="max-w-sm">
-        {/* SEARCH */}
         <Search />
-        {/* FILTER/SORT */}
         <Filters />
         {/* NOTE BUTTONS */}
         <div className="flex justify-around">
-          {/* NEW NOTE*/}
           <div className="dropdown dropdown-start">
             <div
               tabIndex={0}
@@ -63,7 +58,6 @@ const Header = () => {
             >
               + New Note
             </div>
-            {/* NOTE COLORS */}
             <div
               tabIndex={0}
               className="dropdown-content bg-base-100 rounded-box z-1 mt-1 flex w-50 content-center justify-center border border-gray-300 p-2 shadow-md"

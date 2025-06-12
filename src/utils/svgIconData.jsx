@@ -25,7 +25,7 @@ export function NoteIcon(props) {
     </svg>
   );
 }
-// SEARCH ICON
+
 export function SearchIcon(props) {
   return (
     <svg
@@ -43,7 +43,6 @@ export function SearchIcon(props) {
   );
 }
 
-// WARNING ICON
 export function WarningIcon(props) {
   return (
     <motion.svg
@@ -67,7 +66,7 @@ export function WarningIcon(props) {
     </motion.svg>
   );
 }
-// FILTER ICON
+
 export function FilterIcon(props) {
   return (
     <svg

@@ -41,7 +41,6 @@ const Note = ({ noteDetails }) => {
     setAlert(true);
   };
 
-  //* INPUT CHANGE EVENTS
   const handleTitleChange = (id, e) => {
     const userInput = e.target.value;
     setNotesList((prevNotes) =>
@@ -60,7 +59,6 @@ const Note = ({ noteDetails }) => {
     );
   };
 
-  // * DELETE NOTE
   const handleRemove = (id) => {
     const updatedNotes = notesList.filter((note) => {
       return note.id !== id;
@@ -69,7 +67,6 @@ const Note = ({ noteDetails }) => {
     setNotesList(updatedNotes);
   };
 
-  // for changing the title and the description using the note id
   return (
     <motion.div
       variants={variants}
@@ -78,7 +75,7 @@ const Note = ({ noteDetails }) => {
       exit="hidden"
       className="mx-2 mt-4 h-fit w-fit"
     >
-      {/* main sticky note */}
+      {/* MAIN NOTE */}
       <div className={noteMainStyles}>
         {alert ? (
           <div
@@ -123,7 +120,7 @@ const Note = ({ noteDetails }) => {
         ) : (
           <></>
         )}
-        {/* title section */}
+        {/* TITLE SECTION */}
         <div className="relative flex h-1/5 w-full items-end justify-around rounded-t-xl border-b-1 border-gray-400 px-2.5 pt-2.5">
           <input
             type="text"
@@ -140,7 +137,7 @@ const Note = ({ noteDetails }) => {
             X
           </button>
         </div>
-        {/* main text section */}
+        {/* DESCRIPTION SECTION */}
         <div className="relative h-5/7 w-full rounded-b-xl p-2.5">
           <textarea
             name="mainText"
@@ -153,7 +150,6 @@ const Note = ({ noteDetails }) => {
             onBlur={() => setIsFocused(false)}
           ></textarea>
         </div>
-        {/* details of the note */}
         <NoteInfo date={date} isFocused={isFocused} />
       </div>
     </motion.div>
