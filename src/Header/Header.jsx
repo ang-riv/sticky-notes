@@ -36,7 +36,7 @@ const Header = () => {
   };
   const [showCheck, setShowCheck] = useState("");
   return (
-    <div className="flex h-fit w-screen flex-col content-center justify-center p-4">
+    <header className="flex h-fit w-screen flex-col content-center justify-center p-4">
       {/* TITLE */}
       <div className="mb-2.5 flex h-fit w-fit flex-wrap items-center justify-center">
         <div className="bg-warning mr-2.5 rounded-full p-2">
@@ -90,7 +90,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 

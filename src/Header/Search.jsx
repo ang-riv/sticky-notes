@@ -7,9 +7,11 @@ const Search = () => {
     <div className="flex justify-center">
       <label className="input mb-2 w-full">
         <SearchIcon />
+        <label htmlFor="searchInput" className="sr-only"></label>
         <input
           className="text-lg"
           name="search"
+          id="searchInput"
           type="search"
           placeholder="Search for a note..."
           onChange={(e) => setSearchText(e.target.value)}

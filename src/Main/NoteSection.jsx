@@ -50,13 +50,13 @@ const NoteSection = () => {
   }, [filter, searchList]);
 
   return (
-    <div className="flex h-fit w-full flex-wrap justify-center bg-white pb-3 md:justify-start">
+    <main className="flex h-fit w-full flex-wrap justify-center bg-white pb-3 md:justify-start">
       <AnimatePresence>
         {displayNotes.map((note) => (
           <Note key={note.id} noteDetails={note} />
         ))}
       </AnimatePresence>
-    </div>
+    </main>
   );
 };
 
