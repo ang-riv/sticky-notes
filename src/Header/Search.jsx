@@ -4,8 +4,11 @@ import { NoteListContext } from "../components/NoteListContext";
 const Search = () => {
   const { searchText, setSearchText } = useContext(NoteListContext);
   return (
-    <div className="flex justify-center">
-      <label htmlFor="searchInput" className="input mb-2 w-full">
+    <div className="flex-col justify-center">
+      <label htmlFor="searchInput" className="sr-only text-lg">
+        Search for a note
+      </label>
+      <div className="input mb-2 w-full">
         <SearchIcon />
         <input
           className="text-lg"
@@ -16,7 +19,7 @@ const Search = () => {
           onChange={(e) => setSearchText(e.target.value)}
           value={searchText}
         />
-      </label>
+      </div>
     </div>
   );
 };
