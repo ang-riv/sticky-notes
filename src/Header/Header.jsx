@@ -69,7 +69,15 @@ const Header = () => {
                     <motion.div
                       id={color}
                       className={colorStyles}
+                      role="button"
+                      tabIndex="0"
                       onClick={() => handleNewNote(color)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ")
+                          handleNewNote(color);
+                      }}
+                      onFocus={() => setShowCheck(color)}
+                      onBlur={() => setShowCheck("")}
                       onHoverStart={() => setShowCheck(color)}
                       onHoverEnd={() => setShowCheck("")}
                     >
