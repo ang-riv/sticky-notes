@@ -48,7 +48,6 @@ const NoteSection = () => {
       return searchList;
     }
   }, [filter, searchList]);
-
   return (
     <main className="flex h-fit w-full flex-wrap justify-center bg-white pb-3 md:justify-start">
       <AnimatePresence>
