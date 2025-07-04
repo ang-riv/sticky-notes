@@ -59,13 +59,23 @@ const Filters = () => {
             <li>
               <details>
                 <summary>Date</summary>
-                <ul>{filterDateOptions()}</ul>
+                <fieldset className="m-0 border-0 p-0">
+                  <legend className="sr-only">
+                    Filter sticky notes by date:{" "}
+                  </legend>
+                  <ul>{filterDateOptions()}</ul>
+                </fieldset>
               </details>
             </li>
             <li>
               <details>
                 <summary>Color</summary>
-                <ul>{filterColorOptions()}</ul>
+                <fieldset className="m-0 border-0 p-0">
+                  <legend className="sr-only">
+                    Filter sticky notes by a specific color:{" "}
+                  </legend>
+                  <ul>{filterColorOptions()}</ul>
+                </fieldset>
               </details>
             </li>
             <li onClick={() => setFilter({ category: "", option: "" })}>
